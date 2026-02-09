@@ -27,6 +27,7 @@
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    font-size: 16px !important;
 }
 
 /* Hero Section */
@@ -66,7 +67,7 @@
 }
 
 .btk-quality .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -81,7 +82,7 @@
 }
 
 .btk-quality .hero-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
     color: var(--text-secondary);
     margin-bottom: 2rem;
     font-weight: 500;
@@ -113,14 +114,14 @@
 }
 
 .btk-quality .section-title {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
     font-weight: 800;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
 }
 
 .btk-quality .section-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
@@ -153,7 +154,7 @@
 }
 
 .btk-quality .comparison-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 2rem;
     display: flex;
@@ -186,12 +187,12 @@
 }
 
 .btk-quality .bar-label-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
 .btk-quality .bar-label-value {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 900;
     color: var(--orange);
 }
@@ -226,7 +227,7 @@
 }
 
 .btk-quality .bar-percentage {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 900;
     color: white;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -251,7 +252,7 @@
 }
 
 .btk-quality .insight-item p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
 }
 
@@ -321,7 +322,7 @@
 }
 
 .btk-quality .standard-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
     position: relative;
     z-index: 1;
@@ -514,13 +515,13 @@
 }
 
 .btk-quality .timeline-conclusion h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--orange);
     margin-bottom: 0.5rem;
 }
 
 .btk-quality .timeline-conclusion p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
 }
 
@@ -551,13 +552,13 @@
 }
 
 .btk-quality .cert-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
 
 .btk-quality .cert-card p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
 }
 
 /* Testimonials */
@@ -588,7 +589,7 @@
 }
 
 .btk-quality .testimonial-text {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
     position: relative;
@@ -597,7 +598,7 @@
 
 .btk-quality .testimonial-author {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-style: italic;
     position: relative;
     z-index: 1;
@@ -641,13 +642,13 @@
 }
 
 .btk-quality .cta-section h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
     margin-bottom: 1.5rem;
     font-weight: 900;
 }
 
 .btk-quality .cta-section p {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 3rem;
     opacity: 0.95;
 }
@@ -666,7 +667,7 @@
     text-decoration: none;
     border-radius: 12px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     transition: all 0.3s ease;
     display: inline-block;
 }
@@ -699,8 +700,20 @@
 }
 
 @media (max-width: 768px) {
+    .btk-quality {
+        font-size: 17px !important;
+    }
+
     .btk-quality .hero {
         padding: 100px 1.5rem 60px;
+    }
+
+    .btk-quality .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .btk-quality .hero-subtitle {
+        font-size: 1.2rem;
     }
 
     .btk-quality section {
@@ -715,12 +728,16 @@
         margin-bottom: 50px;
     }
 
+    .btk-quality .section-title {
+        font-size: 1.8rem;
+    }
+
     .btk-quality .comparison-card {
         padding: 2rem 1.5rem;
     }
 
     .btk-quality .comparison-title {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -732,6 +749,10 @@
     .btk-quality .standards-grid,
     .btk-quality .cert-grid {
         grid-template-columns: 1fr;
+    }
+
+    .btk-quality .standard-card h3 {
+        font-size: 1.3rem;
     }
 
     .btk-quality .timeline-chart {
@@ -772,6 +793,10 @@
 
     .btk-quality .cta-section {
         padding: 3rem 2rem;
+    }
+
+    .btk-quality .cta-section h2 {
+        font-size: 1.8rem;
     }
 
     .btk-quality .cta-buttons {

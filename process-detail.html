@@ -16,6 +16,7 @@
             line-height: 1.6;
             width: 100%;
             overflow-x: hidden;
+            font-size: 16px !important;
         }
 
         .btk-process * {
@@ -52,7 +53,7 @@
             gap: 0.5rem;
             color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             margin-bottom: 2rem;
             transition: color 0.3s;
         }
@@ -62,7 +63,7 @@
         }
 
         .btk-process .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.8rem, 6vw, 5rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
             letter-spacing: -0.03em;
@@ -73,7 +74,7 @@
         }
 
         .btk-process .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             color: var(--text-gray);
             max-width: 800px;
             margin: 0 auto 4rem;
@@ -128,7 +129,7 @@
         }
 
         .btk-process .indicator-label {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: var(--text-gray);
             font-weight: 500;
         }
@@ -200,14 +201,14 @@
         }
 
         .btk-process .step-content h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 800;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
 
         .btk-process .step-tagline {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--orange);
             margin-bottom: 2rem;
             font-weight: 600;
@@ -232,6 +233,7 @@
             position: relative;
             color: var(--text-gray);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1.05rem;
         }
 
         .btk-process .step-details li:last-child {
@@ -259,7 +261,7 @@
             padding: 0.6rem 1.2rem;
             background: var(--dark-lighter);
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
@@ -285,7 +287,7 @@
 
         .btk-process .timeline-section h2 {
             text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 3rem;
         }
@@ -321,13 +323,13 @@
         }
 
         .btk-process .timeline-step-name {
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
 
         .btk-process .timeline-duration {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: var(--text-gray);
             background: var(--dark-lighter);
             padding: 0.4rem 0.8rem;
@@ -346,13 +348,13 @@
         }
 
         .btk-process .cta-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
         }
 
         .btk-process .cta-section p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-gray);
             margin-bottom: 2.5rem;
         }
@@ -371,7 +373,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 8px 30px rgba(249, 115, 22, 0.3);
             display: inline-flex;
@@ -391,7 +393,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid rgba(249, 115, 22, 0.3);
         }
@@ -411,8 +413,20 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .btk-process {
+                font-size: 17px !important;
+            }
+
             .btk-process .hero {
                 padding: 20px 1.5rem 80px;
+            }
+
+            .btk-process .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .btk-process .hero-subtitle {
+                font-size: 1.1rem;
             }
 
             .btk-process .step-indicator {
@@ -449,6 +463,14 @@
                 font-size: 2.5rem;
             }
 
+            .btk-process .step-content h2 {
+                font-size: 1.7rem;
+            }
+
+            .btk-process .step-tagline {
+                font-size: 1.2rem;
+            }
+
             .btk-process .timeline-track {
                 flex-direction: column;
             }
@@ -460,6 +482,14 @@
 
             .btk-process .timeline-step:last-child {
                 border-bottom: none;
+            }
+
+            .btk-process .timeline-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .btk-process .cta-section h2 {
+                font-size: 1.8rem;
             }
 
             .btk-process .cta-buttons {
