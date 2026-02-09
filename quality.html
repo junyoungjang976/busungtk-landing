@@ -1,0 +1,1254 @@
+<div class="btk-quality">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.btk-quality {
+    --dark-bg: #0a0a0a;
+    --dark-card: #1a1a1a;
+    --dark-lighter: #2a2a2a;
+    --orange: #f97316;
+    --orange-dark: #ea580c;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.btk-quality * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btk-quality {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.btk-quality .hero {
+    padding: 20px 2rem 80px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top, rgba(249, 115, 22, 0.15), transparent 60%),
+        var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-quality .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(249, 115, 22, 0.03) 2px, rgba(249, 115, 22, 0.03) 4px);
+    animation: grid-flow 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes grid-flow {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+}
+
+.btk-quality .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-quality .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.btk-quality .hero h1 span {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btk-quality .hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Container */
+.btk-quality .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section */
+.btk-quality section {
+    padding: 100px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btk-quality section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-quality .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.btk-quality .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.btk-quality .section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Data Comparison Cards */
+.btk-quality .comparison-grid {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.btk-quality .comparison-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-quality .comparison-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+}
+
+.btk-quality .comparison-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btk-quality .comparison-title .multiplier {
+    background: var(--orange);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.btk-quality .comparison-bars {
+    margin: 3rem 0;
+}
+
+.btk-quality .bar-group {
+    margin-bottom: 2.5rem;
+}
+
+.btk-quality .bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.btk-quality .bar-label-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btk-quality .bar-label-value {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--orange);
+}
+
+.btk-quality .bar-container {
+    height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.btk-quality .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+    border-radius: 12px;
+    position: relative;
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+}
+
+.btk-quality .bar-fill.competitor {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.btk-quality .bar-fill.visible {
+    width: var(--bar-width);
+}
+
+.btk-quality .bar-percentage {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btk-quality .comparison-insight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btk-quality .insight-item h4 {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.btk-quality .insight-item p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.btk-quality .comparison-footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(249, 115, 22, 0.05);
+    border-left: 4px solid var(--orange);
+    border-radius: 8px;
+}
+
+.btk-quality .comparison-footer strong {
+    color: var(--orange);
+}
+
+/* Quality Standards Grid */
+.btk-quality .standards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.btk-quality .standard-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-quality .standard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.1), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btk-quality .standard-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(249, 115, 22, 0.2);
+}
+
+.btk-quality .standard-card:hover::before {
+    opacity: 1;
+}
+
+.btk-quality .standard-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-quality .standard-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-quality .standard-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cost Timeline */
+.btk-quality .timeline-container {
+    background: var(--dark-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-quality .timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+}
+
+.btk-quality .timeline-chart {
+    position: relative;
+    height: 400px;
+    margin: 3rem 0;
+}
+
+.btk-quality .timeline-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btk-quality .grid-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.btk-quality .grid-label {
+    position: absolute;
+    left: -60px;
+    top: -8px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.btk-quality .timeline-lines {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    right: 0;
+    bottom: 0;
+}
+
+.btk-quality .cost-line {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.btk-quality .cost-line svg {
+    width: 100%;
+    height: 100%;
+}
+
+.btk-quality .line-competitor {
+    stroke: #ef4444;
+    stroke-width: 4;
+    fill: none;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.btk-quality .line-busung {
+    stroke: var(--orange);
+    stroke-width: 4;
+    fill: none;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.btk-quality .cost-line.visible .line-competitor,
+.btk-quality .cost-line.visible .line-busung {
+    animation: draw-line 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.btk-quality .timeline-points {
+    position: absolute;
+    bottom: 0;
+    left: 60px;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btk-quality .timeline-point {
+    text-align: center;
+    flex: 1;
+}
+
+.btk-quality .point-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.btk-quality .point-values {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btk-quality .point-value {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+.btk-quality .point-value.competitor {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.btk-quality .point-value.busung {
+    color: var(--orange);
+    background: rgba(249, 115, 22, 0.1);
+}
+
+.btk-quality .timeline-legend {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btk-quality .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+.btk-quality .legend-line {
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.btk-quality .legend-line.competitor {
+    background: #ef4444;
+}
+
+.btk-quality .legend-line.busung {
+    background: var(--orange);
+}
+
+.btk-quality .timeline-conclusion {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(249, 115, 22, 0.05);
+    border: 2px solid var(--orange);
+    border-radius: 16px;
+}
+
+.btk-quality .timeline-conclusion h3 {
+    font-size: 2rem;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+}
+
+.btk-quality .timeline-conclusion p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* Certifications */
+.btk-quality .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.btk-quality .cert-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btk-quality .cert-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+}
+
+.btk-quality .cert-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.btk-quality .cert-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.btk-quality .cert-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Testimonials */
+.btk-quality .testimonial-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.btk-quality .testimonial-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-quality .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    font-size: 8rem;
+    color: var(--orange);
+    opacity: 0.1;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.btk-quality .testimonial-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-quality .testimonial-author {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* CTA Section */
+.btk-quality .cta-section {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    border-radius: 32px;
+    padding: 5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-quality .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.05) 10px,
+        rgba(255, 255, 255, 0.05) 20px
+    );
+    animation: pattern-shift 20s linear infinite;
+}
+
+@keyframes pattern-shift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, 40px); }
+}
+
+.btk-quality .cta-content {
+    position: relative;
+    z-index: 1;
+}
+
+.btk-quality .cta-section h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+.btk-quality .cta-section p {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    opacity: 0.95;
+}
+
+.btk-quality .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btk-quality .cta-button {
+    padding: 1.2rem 3rem;
+    background: white;
+    color: var(--orange);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btk-quality .cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.btk-quality .cta-button.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+}
+
+.btk-quality .cta-button.secondary:hover {
+    background: white;
+    color: var(--orange);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .btk-quality .comparison-insight {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-quality .timeline-chart {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .btk-quality .hero {
+        padding: 100px 1.5rem 60px;
+    }
+
+    .btk-quality section {
+        padding: 60px 0;
+    }
+
+    .btk-quality .container {
+        padding: 0 1.5rem;
+    }
+
+    .btk-quality .section-header {
+        margin-bottom: 50px;
+    }
+
+    .btk-quality .comparison-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .btk-quality .comparison-title {
+        font-size: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btk-quality .bar-container {
+        height: 50px;
+    }
+
+    .btk-quality .standards-grid,
+    .btk-quality .cert-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-quality .timeline-chart {
+        height: 300px;
+        margin-left: 40px;
+    }
+
+    .btk-quality .timeline-points {
+        left: 40px;
+    }
+
+    .btk-quality .grid-label {
+        left: -45px;
+        font-size: 0.75rem;
+    }
+
+    .btk-quality .point-label {
+        font-size: 0.85rem;
+    }
+
+    .btk-quality .point-value {
+        font-size: 0.8rem;
+    }
+
+    .btk-quality .timeline-legend {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .btk-quality .testimonial-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .btk-quality .testimonial-text {
+        font-size: 1.1rem;
+    }
+
+    .btk-quality .cta-section {
+        padding: 3rem 2rem;
+    }
+
+    .btk-quality .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btk-quality .cta-button {
+        width: 100%;
+    }
+}
+</style>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>우리는 <span>비싼 회사가</span> 아닙니다.<br>결과가 <span>명확한</span> 회사입니다.</h1>
+        <p class="hero-subtitle">25년간 쌓아온 품질 기준을 숫자로 증명합니다</p>
+    </div>
+</section>
+
+<!-- Data Comparison Section -->
+<section class="data-comparison">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">1cm 차이가 만드는 품질 격차</h2>
+            <p class="section-subtitle">같은 장비, 같은 공간이라도 시공 기준이 다르면 결과가 다릅니다</p>
+        </div>
+
+        <div class="comparison-grid">
+            <!-- Comparison 1: Equipment Failure Rate -->
+            <div class="comparison-card">
+                <div class="comparison-title">
+                    <span>설비 고장률</span>
+                    <span class="multiplier">4배 차이</span>
+                </div>
+
+                <div class="comparison-bars">
+                    <div class="bar-group">
+                        <div class="bar-label">
+                            <span class="bar-label-text">타사 (기준 없는 설치)</span>
+                            <span class="bar-label-value">100%</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill competitor" style="--bar-width: 100%">
+                                <span class="bar-percentage">1년 내 고장률 높음</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="bar-label">
+                            <span class="bar-label-text">부성티케이 (설계 단계 기준 적용)</span>
+                            <span class="bar-label-value">25%</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="--bar-width: 25%">
+                                <span class="bar-percentage">고장 최소화</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-insight">
+                    <div class="insight-item">
+                        <h4>타사의 문제점</h4>
+                        <p>장비만 설치하고 끝. 부하 계산, 배선 설계, 환기 고려 없이 진행하여 초기 고장 발생 빈번</p>
+                    </div>
+                    <div class="insight-item">
+                        <h4>부성티케이의 차이</h4>
+                        <p>설계 단계부터 정밀 부하 계산, 배기 시뮬레이션, 전원 용량 검증으로 안정적 운영 보장</p>
+                    </div>
+                </div>
+
+                <div class="comparison-footer">
+                    <strong>근거:</strong> 내부 A/S 데이터 25년 축적 분석 (2000건+ 설치 이력 기반)
+                </div>
+            </div>
+
+            <!-- Comparison 2: Temperature Variance -->
+            <div class="comparison-card">
+                <div class="comparison-title">
+                    <span>온도 편차</span>
+                    <span class="multiplier">4배 차이</span>
+                </div>
+
+                <div class="comparison-bars">
+                    <div class="bar-group">
+                        <div class="bar-label">
+                            <span class="bar-label-text">타사 (장비만 설치)</span>
+                            <span class="bar-label-value">±4°C</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill competitor" style="--bar-width: 100%">
+                                <span class="bar-percentage">온도 흔들림 큼</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="bar-label">
+                            <span class="bar-label-text">부성티케이 (공간 맞춤 튜닝)</span>
+                            <span class="bar-label-value">±1°C</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="--bar-width: 25%">
+                                <span class="bar-percentage">안정적 유지</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-insight">
+                    <div class="insight-item">
+                        <h4>타사의 문제점</h4>
+                        <p>냉장·냉동 장비 설치 후 공간 특성 무시, 단순 전원 연결만으로 온도 편차 발생</p>
+                    </div>
+                    <div class="insight-item">
+                        <h4>부성티케이의 차이</h4>
+                        <p>실측 기반 공간 분석, 단열 보강, 배치 최적화로 ±1°C 이내 안정적 온도 유지</p>
+                    </div>
+                </div>
+
+                <div class="comparison-footer">
+                    <strong>근거:</strong> 냉장/냉동 장비 설치 후 72시간 연속 모니터링 기준 (자체 검수 프로토콜)
+                </div>
+            </div>
+
+            <!-- Comparison 3: Installation Manual Application -->
+            <div class="comparison-card">
+                <div class="comparison-title">
+                    <span>설치 매뉴얼 적용률</span>
+                    <span class="multiplier">7배 차이</span>
+                </div>
+
+                <div class="comparison-bars">
+                    <div class="bar-group">
+                        <div class="bar-label">
+                            <span class="bar-label-text">타사 (작업자 경험 의존)</span>
+                            <span class="bar-label-value">14%</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill competitor" style="--bar-width: 14%">
+                                <span class="bar-percentage">품질 들쭉날쭉</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="bar-label">
+                            <span class="bar-label-text">부성티케이 (체크리스트 기반 시공)</span>
+                            <span class="bar-label-value">100%</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="--bar-width: 100%">
+                                <span class="bar-percentage">일관된 품질</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-insight">
+                    <div class="insight-item">
+                        <h4>타사의 문제점</h4>
+                        <p>작업자마다 다른 방식, 검수 기준 없음, 시공 후 문제 발생해도 원인 추적 불가</p>
+                    </div>
+                    <div class="insight-item">
+                        <h4>부성티케이의 차이</h4>
+                        <p>200+ 페이지 내부 시공 매뉴얼, 단계별 체크리스트, 연 2회 업데이트로 항상 최신 기준 적용</p>
+                    </div>
+                </div>
+
+                <div class="comparison-footer">
+                    <strong>근거:</strong> 자체 시공 매뉴얼 200+ 페이지, 체크리스트 기반 검수 (연 2회 업데이트)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quality Standards Section -->
+<section class="quality-standards">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">우리의 품질 기준</h2>
+            <p class="section-subtitle">25년간 쌓아온 노하우를 시스템화한 6가지 품질 원칙</p>
+        </div>
+
+        <div class="standards-grid">
+            <div class="standard-card">
+                <div class="standard-icon">📐</div>
+                <h3>설계 정밀도</h3>
+                <p>1cm 단위 실측, 정밀 부하 계산, 배기 시뮬레이션으로 설계 단계부터 문제 차단</p>
+            </div>
+
+            <div class="standard-card">
+                <div class="standard-icon">🔍</div>
+                <h3>장비 검증</h3>
+                <p>다브랜드 성능 비교, 현장 적합성 테스트, 장기 내구성 검증 후 채택</p>
+            </div>
+
+            <div class="standard-card">
+                <div class="standard-icon">📋</div>
+                <h3>시공 매뉴얼</h3>
+                <p>200+ 페이지 내부 매뉴얼, 체크리스트 기반 시공으로 누가 해도 동일한 품질</p>
+            </div>
+
+            <div class="standard-card">
+                <div class="standard-icon">✓</div>
+                <h3>검수 프로세스</h3>
+                <p>시운전 → 72시간 온도 모니터링 → 최종 검수 3단계로 완벽한 품질 확인</p>
+            </div>
+
+            <div class="standard-card">
+                <div class="standard-icon">🛠️</div>
+                <h3>A/S 대응</h3>
+                <p>평균 4시간 내 초동 대응, 전담 담당자 배정, 25년 부품 재고 보유</p>
+            </div>
+
+            <div class="standard-card">
+                <div class="standard-icon">📊</div>
+                <h3>데이터 추적</h3>
+                <p>디지털 시스템으로 모든 이력 기록·분석, 예방 정비 자동 알림</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cost Comparison Timeline -->
+<section class="cost-timeline">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">1cm 차이가 10년 뒤 비용 차이를 만듭니다</h2>
+            <p class="section-subtitle">초기 비용보다 중요한 것은 총 소유 비용(TCO)입니다</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-chart">
+                <div class="timeline-grid">
+                    <div class="grid-line"><span class="grid-label">500</span></div>
+                    <div class="grid-line"><span class="grid-label">400</span></div>
+                    <div class="grid-line"><span class="grid-label">300</span></div>
+                    <div class="grid-line"><span class="grid-label">200</span></div>
+                    <div class="grid-line"><span class="grid-label">100</span></div>
+                    <div class="grid-line"><span class="grid-label">0</span></div>
+                </div>
+
+                <div class="timeline-lines">
+                    <div class="cost-line">
+                        <svg viewBox="0 0 1000 400" preserveAspectRatio="none">
+                            <!-- Competitor Line -->
+                            <path class="line-competitor" d="M 0 320 L 250 280 L 500 200 L 750 80 L 1000 0" />
+                            <!-- Busung Line -->
+                            <path class="line-busung" d="M 0 296 L 250 292 L 500 280 L 750 256 L 1000 240" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="timeline-points">
+                    <div class="timeline-point">
+                        <div class="point-label">설치 시점</div>
+                        <div class="point-values">
+                            <div class="point-value competitor">저가 시공: 100</div>
+                            <div class="point-value busung">부성티케이: 130</div>
+                        </div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-label">1년 후</div>
+                        <div class="point-values">
+                            <div class="point-value competitor">150 (고장 수리)</div>
+                            <div class="point-value busung">135 (정기 점검)</div>
+                        </div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-label">3년 후</div>
+                        <div class="point-values">
+                            <div class="point-value competitor">250 (장비 교체)</div>
+                            <div class="point-value busung">160 (유지보수)</div>
+                        </div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-label">5년 후</div>
+                        <div class="point-values">
+                            <div class="point-value competitor">400+ (재시공)</div>
+                            <div class="point-value busung">200 (안정 운영)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-legend">
+                <div class="legend-item">
+                    <div class="legend-line competitor"></div>
+                    <span>저가 시공 (기준 없는 설치)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-line busung"></div>
+                    <span>부성티케이 (설계 기반 시공)</span>
+                </div>
+            </div>
+
+            <div class="timeline-conclusion">
+                <h3>5년 TCO 기준 부성티케이가 50% 절약</h3>
+                <p>초기 30% 높은 투자로 장기 50% 비용 절감 효과</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications -->
+<section class="certifications">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">공인된 기준과 인증</h2>
+            <p class="section-subtitle">업계 표준을 넘어 자체 기준을 더합니다</p>
+        </div>
+
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-icon">🏆</div>
+                <h3>HACCP 기준 설계</h3>
+                <p>식품 안전 관리 기준 준수</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">⚡</div>
+                <h3>에너지 효율 등급</h3>
+                <p>1등급 장비 우선 채택</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">🔥</div>
+                <h3>소방/가스 안전</h3>
+                <p>법정 기준 100% 준수</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">✓</div>
+                <h3>자체 품질 인증</h3>
+                <p>내부 검수 프로세스 통과</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">고객이 증명하는 품질</h2>
+            <p class="section-subtitle">25년간 함께한 고객들의 진짜 경험</p>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">처음엔 비싸다고 생각했는데, 3년 지나니 주변보다 유지비가 훨씬 적습니다. 다른 매장들은 매년 수리비가 나가는데 저희는 정기 점검만으로 충분합니다.</p>
+                <p class="testimonial-author">— 프랜차이즈 본사 설비 담당자</p>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">다른 업체에서 시공한 매장은 매년 문제가 생기는데, 부성티케이 매장은 5년째 안정적입니다. 이제는 신규 매장도 무조건 부성티케이로 합니다.</p>
+                <p class="testimonial-author">— 구내식당 운영 팀장</p>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">급하게 요청해도 같은 퀄리티로 마무리해주니 믿고 맡깁니다. 매뉴얼이 있다는 게 이렇게 차이가 크구나 실감했습니다.</p>
+                <p class="testimonial-author">— 호텔 F&B 매니저</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>품질의 차이를 직접 확인하세요</h2>
+                <p>25년 품질 기준이 어떻게 비용을 절감하는지 보여드립니다</p>
+                <div class="cta-buttons">
+                    <a href="https://www.busungtk.com" class="cta-button">무료 현장 진단 요청</a>
+                    <a href="digital-partnership.html" class="cta-button secondary">디지털 파트너십 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+
+                // Trigger bar animations
+                const bars = entry.target.querySelectorAll('.btk-quality .bar-fill');
+                bars.forEach(bar => {
+                    bar.classList.add('visible');
+                });
+
+                // Trigger cost line animation
+                const costLine = entry.target.querySelector('.btk-quality .cost-line');
+                if (costLine) {
+                    costLine.classList.add('visible');
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections within .btk-quality
+    document.querySelectorAll('.btk-quality section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('.btk-quality a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add parallax effect to hero
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.btk-quality .hero');
+        if (hero && scrolled < hero.offsetHeight) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+
+    // Animate numbers on scroll
+    const animateValue = (element, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            element.textContent = value + (element.dataset.suffix || '');
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    // Observe number elements for animation
+    const numberObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const endValue = parseInt(element.dataset.value);
+                animateValue(element, 0, endValue, 1500);
+                numberObserver.unobserve(element);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    // Add data-value attributes to numbers you want to animate
+    document.querySelectorAll('.btk-quality .bar-label-value').forEach(el => {
+        const value = parseInt(el.textContent);
+        if (!isNaN(value)) {
+            el.dataset.value = value;
+            el.dataset.suffix = el.textContent.replace(value, '');
+            el.textContent = '0' + el.dataset.suffix;
+            numberObserver.observe(el);
+        }
+    });
+})();
+</script>
+</div>

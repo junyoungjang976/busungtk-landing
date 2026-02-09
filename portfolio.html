@@ -1,0 +1,840 @@
+<div class="btk-portfolio">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.btk-portfolio {
+    width: 100%;
+    overflow-x: hidden;
+    --dark-bg: #0a0a0a;
+    --dark-card: #1a1a1a;
+    --dark-lighter: #2a2a2a;
+    --orange: #f97316;
+    --orange-dark: #ea580c;
+    --orange-glow: rgba(249, 115, 22, 0.15);
+    --text-primary: #ffffff;
+    --text-secondary: #a3a3a3;
+    --text-muted: #737373;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.btk-portfolio * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hero Section */
+.btk-portfolio .hero {
+    padding: 20px 2rem 80px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+        var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-portfolio .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+    opacity: 0.3;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.5; transform: translateX(-50%) scale(1.1); }
+}
+
+.btk-portfolio .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-portfolio .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+}
+
+.btk-portfolio .back-link:hover {
+    color: var(--orange);
+}
+
+.btk-portfolio .back-link::before {
+    content: '←';
+    font-size: 1.2rem;
+}
+
+.btk-portfolio .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btk-portfolio .hero p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Filter Tabs */
+.btk-portfolio .filter-section {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.btk-portfolio .filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.btk-portfolio .filter-tab {
+    padding: 0.75rem 1.75rem;
+    background: var(--dark-card);
+    border: 2px solid transparent;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-portfolio .filter-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btk-portfolio .filter-tab span {
+    position: relative;
+    z-index: 1;
+}
+
+.btk-portfolio .filter-tab:hover {
+    border-color: var(--orange);
+    transform: translateY(-2px);
+}
+
+.btk-portfolio .filter-tab.active {
+    border-color: var(--orange);
+    color: var(--text-primary);
+    box-shadow: 0 4px 20px var(--orange-glow);
+}
+
+.btk-portfolio .filter-tab.active::before {
+    opacity: 0.1;
+}
+
+/* Portfolio Grid */
+.btk-portfolio .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btk-portfolio .portfolio-card {
+    background: var(--dark-card);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: none;
+}
+
+.btk-portfolio .portfolio-card.visible {
+    display: block;
+}
+
+.btk-portfolio .portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-portfolio .portfolio-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(249, 115, 22, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.btk-portfolio .portfolio-card:hover::before {
+    transform: scaleX(1);
+}
+
+.btk-portfolio .card-content {
+    padding: 2rem;
+}
+
+.btk-portfolio .industry-tag {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.25rem;
+}
+
+.btk-portfolio .tag-franchise {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+.btk-portfolio .tag-cafeteria {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+.btk-portfolio .tag-hotel {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+}
+
+.btk-portfolio .tag-public {
+    background: rgba(249, 115, 22, 0.15);
+    color: var(--orange);
+}
+
+.btk-portfolio .tag-hospital {
+    background: rgba(236, 72, 153, 0.15);
+    color: #f472b6;
+}
+
+.btk-portfolio .card-content h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.btk-portfolio .client-name {
+    font-size: 0.95rem;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.btk-portfolio .card-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.btk-portfolio .card-metrics {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btk-portfolio .metric {
+    flex: 1;
+}
+
+.btk-portfolio .metric-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.btk-portfolio .metric-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Stats Bar */
+.btk-portfolio .stats-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(249, 115, 22, 0.03) 50%, transparent 100%);
+    margin: 4rem 0;
+}
+
+.btk-portfolio .stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+}
+
+.btk-portfolio .stat-item {
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.btk-portfolio .stat-item:nth-child(1) { animation-delay: 0.1s; }
+.btk-portfolio .stat-item:nth-child(2) { animation-delay: 0.2s; }
+.btk-portfolio .stat-item:nth-child(3) { animation-delay: 0.3s; }
+.btk-portfolio .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+.btk-portfolio .stat-number {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.btk-portfolio .stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* CTA Section */
+.btk-portfolio .cta-section {
+    padding: 5rem 2rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.btk-portfolio .cta-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.btk-portfolio .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btk-portfolio .cta-primary {
+    padding: 1.25rem 3rem;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px var(--orange-glow);
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-portfolio .cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.btk-portfolio .cta-primary:hover::before {
+    left: 100%;
+}
+
+.btk-portfolio .cta-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--orange-glow);
+}
+
+.btk-portfolio .cta-secondary {
+    padding: 1.25rem 3rem;
+    background: transparent;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-portfolio .cta-secondary:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Scroll Animations */
+.btk-portfolio .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-portfolio .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .btk-portfolio .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btk-portfolio .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .btk-portfolio .hero {
+        padding: 20px 1.5rem 60px;
+    }
+
+    .btk-portfolio .filter-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .btk-portfolio .filter-tabs {
+        gap: 0.75rem;
+    }
+
+    .btk-portfolio .filter-tab {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
+    }
+
+    .btk-portfolio .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .btk-portfolio .stats-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .btk-portfolio .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btk-portfolio .cta-primary,
+    .btk-portfolio .cta-secondary {
+        width: 100%;
+    }
+}
+</style>
+
+<!-- 메인 페이지 링크 (아임웹 URL로 교체 필요) -->
+<a href="#" class="back-link" style="display: inline-flex; margin: 1rem 2rem;">메인으로 돌아가기</a>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>함께한 현장, 함께 만든 결과</h1>
+        <p>25년간 1,000+ 프로젝트를 성공적으로 완수했습니다</p>
+    </div>
+</section>
+
+<section class="filter-section">
+    <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all"><span>전체</span></button>
+        <button class="filter-tab" data-filter="franchise"><span>프랜차이즈</span></button>
+        <button class="filter-tab" data-filter="cafeteria"><span>구내식당</span></button>
+        <button class="filter-tab" data-filter="hotel"><span>호텔·리조트</span></button>
+        <button class="filter-tab" data-filter="public"><span>공공기관</span></button>
+        <button class="filter-tab" data-filter="hospital"><span>병원</span></button>
+    </div>
+
+    <div class="portfolio-grid">
+        <!-- Card 1 -->
+        <div class="portfolio-card visible fade-in" data-category="cafeteria">
+            <div class="card-content">
+                <span class="industry-tag tag-cafeteria">구내식당</span>
+                <h3>삼성전자 기흥캠퍼스 구내식당</h3>
+                <div class="client-name">삼성전자</div>
+                <p class="card-description">500석 규모의 대형 구내식당 전면 리모델링. 동선 최적화와 최신 설비로 운영 효율 35% 향상</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">규모</div>
+                        <div class="metric-value">500석</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">기간</div>
+                        <div class="metric-value">3개월</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="portfolio-card visible fade-in" data-category="franchise">
+            <div class="card-content">
+                <span class="industry-tag tag-franchise">프랜차이즈</span>
+                <h3>던킨도너츠 표준주방</h3>
+                <div class="client-name">SPC그룹</div>
+                <p class="card-description">50개 매장 동시 오픈을 위한 표준화 설계. 매뉴얼화로 신규 매장 셋업 기간 40% 단축</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">매장수</div>
+                        <div class="metric-value">50개</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">표준화율</div>
+                        <div class="metric-value">95%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="portfolio-card visible fade-in" data-category="hotel">
+            <div class="card-content">
+                <span class="industry-tag tag-hotel">호텔·리조트</span>
+                <h3>에버랜드 레스토랑</h3>
+                <div class="client-name">삼성물산 리조트부문</div>
+                <p class="card-description">3개 레스토랑 신규 설계 및 시공. 대량 조리와 고급 플레이팅을 동시 지원하는 하이브리드 주방</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">매장</div>
+                        <div class="metric-value">3개</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">좌석</div>
+                        <div class="metric-value">600석</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="portfolio-card visible fade-in" data-category="cafeteria">
+            <div class="card-content">
+                <span class="industry-tag tag-cafeteria">구내식당</span>
+                <h3>CJ프레시웨이 급식센터</h3>
+                <div class="client-name">CJ프레시웨이</div>
+                <p class="card-description">1,000식/일 생산 시설 설비 전면 교체. 위생등급 상향과 에너지 비용 25% 절감 달성</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">생산량</div>
+                        <div class="metric-value">1000식</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">기간</div>
+                        <div class="metric-value">2개월</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="portfolio-card visible fade-in" data-category="franchise">
+            <div class="card-content">
+                <span class="industry-tag tag-franchise">프랜차이즈</span>
+                <h3>교촌치킨 중앙주방</h3>
+                <div class="client-name">교촌F&B</div>
+                <p class="card-description">중앙주방 신규 시공. 대량 전처리 자동화 라인과 급속냉동 설비로 품질 균일화</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">면적</div>
+                        <div class="metric-value">800평</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">공급</div>
+                        <div class="metric-value">120매장</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="portfolio-card visible fade-in" data-category="hotel">
+            <div class="card-content">
+                <span class="industry-tag tag-hotel">호텔·리조트</span>
+                <h3>Lakeside CC 클럽하우스</h3>
+                <div class="client-name">레이크사이드 컨트리클럽</div>
+                <p class="card-description">연회장과 레스토랑을 아우르는 통합 주방 설계. 다품종 소량 생산 최적화</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">규모</div>
+                        <div class="metric-value">300석</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">연회</div>
+                        <div class="metric-value">200명</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="portfolio-card visible fade-in" data-category="public">
+            <div class="card-content">
+                <span class="industry-tag tag-public">공공기관</span>
+                <h3>경기대학교 학생식당</h3>
+                <div class="client-name">경기대학교</div>
+                <p class="card-description">800석 학생식당 리모델링. 피크타임 대응력 강화와 메뉴 다양성 확보</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">좌석</div>
+                        <div class="metric-value">800석</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">기간</div>
+                        <div class="metric-value">2개월</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="portfolio-card visible fade-in" data-category="hospital">
+            <div class="card-content">
+                <span class="industry-tag tag-hospital">병원</span>
+                <h3>삼성서울병원 영양실</h3>
+                <div class="client-name">삼성서울병원</div>
+                <p class="card-description">특수환경 대응 주방 설계. HACCP 대비 위생구역 분리와 치료식 전용 조리 라인</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">규모</div>
+                        <div class="metric-value">1200식</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">위생등급</div>
+                        <div class="metric-value">특급</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="portfolio-card visible fade-in" data-category="cafeteria">
+            <div class="card-content">
+                <span class="industry-tag tag-cafeteria">구내식당</span>
+                <h3>신세계푸드 배송센터</h3>
+                <div class="client-name">신세계푸드</div>
+                <p class="card-description">물류 통합 조리시설 설계. 입고-조리-배송 동선 최적화로 리드타임 30% 단축</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">면적</div>
+                        <div class="metric-value">600평</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">배송</div>
+                        <div class="metric-value">80곳</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="portfolio-card visible fade-in" data-category="cafeteria">
+            <div class="card-content">
+                <span class="industry-tag tag-cafeteria">구내식당</span>
+                <h3>풀무원 연구소 식당</h3>
+                <div class="client-name">풀무원</div>
+                <p class="card-description">300석 친환경 식당 설계. 저탄소 설비와 유기농 식재 전용 보관 시스템</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">좌석</div>
+                        <div class="metric-value">300석</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">인증</div>
+                        <div class="metric-value">친환경</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 11 -->
+        <div class="portfolio-card visible fade-in" data-category="franchise">
+            <div class="card-content">
+                <span class="industry-tag tag-franchise">프랜차이즈</span>
+                <h3>오설록 티하우스</h3>
+                <div class="client-name">아모레퍼시픽</div>
+                <p class="card-description">음료와 디저트 특화 주방 설계. 시그니처 메뉴 재현도 향상과 제조 시간 단축</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">매장</div>
+                        <div class="metric-value">15개</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">메뉴</div>
+                        <div class="metric-value">30종</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 12 -->
+        <div class="portfolio-card visible fade-in" data-category="public">
+            <div class="card-content">
+                <span class="industry-tag tag-public">공공기관</span>
+                <h3>군인공제회 숙소식당</h3>
+                <div class="client-name">군인공제회</div>
+                <p class="card-description">대량급식 시설 설계. 내구성 설비와 간편 정비로 가동률 99% 유지</p>
+                <div class="card-metrics">
+                    <div class="metric">
+                        <div class="metric-label">규모</div>
+                        <div class="metric-value">1500식</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">가동률</div>
+                        <div class="metric-value">99%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number">1,000+</div>
+            <div class="stat-label">총 프로젝트</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">평균 고객 만족도</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">85%</div>
+            <div class="stat-label">재계약률</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4시간</div>
+            <div class="stat-label">평균 A/S 응답</div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section fade-in">
+    <h2>다음 프로젝트의 주인공이 되어보세요</h2>
+    <div class="cta-buttons">
+        <a href="https://www.busungtk.com" class="cta-primary">무료 견적 요청</a>
+        <a href="#" class="cta-secondary">메인으로 돌아가기</a>
+    </div>
+</section>
+
+<script>
+// Filter functionality
+const filterTabs = document.querySelectorAll('.btk-portfolio .filter-tab');
+const portfolioCards = document.querySelectorAll('.btk-portfolio .portfolio-card');
+
+filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const filter = tab.dataset.filter;
+
+        // Update active tab
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Filter cards
+        portfolioCards.forEach(card => {
+            const category = card.dataset.category;
+
+            if (filter === 'all' || category === filter) {
+                card.classList.add('visible');
+            } else {
+                card.classList.remove('visible');
+            }
+        });
+    });
+});
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, index * 100);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.btk-portfolio .fade-in').forEach(el => {
+    observer.observe(el);
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('.btk-portfolio a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+</div>

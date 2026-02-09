@@ -1,0 +1,996 @@
+<div class="btk-solutions">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+        .btk-solutions {
+            width: 100%;
+            overflow-x: hidden;
+            --dark-bg: #0a0a0a;
+            --dark-card: #1a1a1a;
+            --dark-lighter: #2a2a2a;
+            --orange: #f97316;
+            --orange-dark: #ea580c;
+            --orange-glow: rgba(249, 115, 22, 0.2);
+            --franchise-accent: #3b82f6;
+            --cafeteria-accent: #10b981;
+            --hotel-accent: #8b5cf6;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+        }
+
+        .btk-solutions * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .btk-solutions {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--dark-bg);
+            color: #e5e5e5;
+            line-height: 1.7;
+        }
+
+        /* Hero Section */
+        .btk-solutions .hero {
+            padding: 20px 2rem 8rem;
+            text-align: center;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btk-solutions .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.03) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .btk-solutions .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .btk-solutions .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+        }
+
+        .btk-solutions .hero .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: #a3a3a3;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .btk-solutions .hero .highlight {
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        /* Solution Sections */
+        .btk-solutions .solution-section {
+            padding: var(--spacing-xl) 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btk-solutions .solution-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .btk-solutions .solution-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .btk-solutions .solution-icon {
+            font-size: 4rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .btk-solutions .solution-title-group h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .btk-solutions .solution-tagline {
+            font-size: 1.25rem;
+            color: #a3a3a3;
+            font-weight: 500;
+        }
+
+        /* Franchise Theme */
+        .btk-solutions .solution-franchise {
+            background:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                var(--dark-bg);
+        }
+
+        .btk-solutions .solution-franchise h2 {
+            color: var(--franchise-accent);
+        }
+
+        .btk-solutions .solution-franchise .metric-card {
+            border-left: 3px solid var(--franchise-accent);
+        }
+
+        /* Cafeteria Theme */
+        .btk-solutions .solution-cafeteria {
+            background:
+                radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+                var(--dark-bg);
+        }
+
+        .btk-solutions .solution-cafeteria h2 {
+            color: var(--cafeteria-accent);
+        }
+
+        .btk-solutions .solution-cafeteria .metric-card {
+            border-left: 3px solid var(--cafeteria-accent);
+        }
+
+        /* Hotel Theme */
+        .btk-solutions .solution-hotel {
+            background:
+                radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                var(--dark-bg);
+        }
+
+        .btk-solutions .solution-hotel h2 {
+            color: var(--hotel-accent);
+        }
+
+        .btk-solutions .solution-hotel .metric-card {
+            border-left: 3px solid var(--hotel-accent);
+        }
+
+        /* Approach Grid */
+        .btk-solutions .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .btk-solutions .approach-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .btk-solutions .approach-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .btk-solutions .approach-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .btk-solutions .approach-card p {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Clients Section */
+        .btk-solutions .clients-section {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btk-solutions .clients-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #737373;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .btk-solutions .clients-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btk-solutions .client-tag {
+            background: var(--dark-lighter);
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #e5e5e5;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Metrics Grid */
+        .btk-solutions .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .btk-solutions .metric-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left-width: 3px;
+        }
+
+        .btk-solutions .metric-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .btk-solutions .metric-label {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Pain Points */
+        .btk-solutions .pain-points {
+            background: var(--dark-lighter);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btk-solutions .pain-points h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+
+        .btk-solutions .pain-point-item {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--dark-card);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .btk-solutions .pain-point-problem {
+            text-align: right;
+        }
+
+        .btk-solutions .pain-point-problem .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #ef4444;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .btk-solutions .pain-point-problem .text {
+            font-size: 1rem;
+            color: #e5e5e5;
+            font-weight: 600;
+        }
+
+        .btk-solutions .pain-point-arrow {
+            color: var(--orange);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .btk-solutions .pain-point-solution {
+            text-align: left;
+        }
+
+        .btk-solutions .pain-point-solution .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #10b981;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .btk-solutions .pain-point-solution .text {
+            font-size: 0.95rem;
+            color: #a3a3a3;
+            line-height: 1.5;
+        }
+
+        /* Comparison Table */
+        .btk-solutions .comparison-section {
+            padding: var(--spacing-xl) 2rem;
+            background: var(--dark-bg);
+        }
+
+        .btk-solutions .comparison-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .btk-solutions .comparison-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btk-solutions .comparison-table {
+            background: var(--dark-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btk-solutions .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .btk-solutions table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .btk-solutions thead {
+            background: var(--dark-lighter);
+        }
+
+        .btk-solutions th {
+            padding: 1.5rem 2rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btk-solutions th:first-child {
+            color: #737373;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btk-solutions th:nth-child(2) {
+            color: var(--franchise-accent);
+        }
+
+        .btk-solutions th:nth-child(3) {
+            color: var(--cafeteria-accent);
+        }
+
+        .btk-solutions th:nth-child(4) {
+            color: var(--hotel-accent);
+        }
+
+        .btk-solutions td {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btk-solutions td:first-child {
+            font-weight: 600;
+            color: #a3a3a3;
+            font-size: 0.95rem;
+        }
+
+        .btk-solutions td:not(:first-child) {
+            color: #e5e5e5;
+            font-size: 0.95rem;
+        }
+
+        .btk-solutions tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Final CTA */
+        .btk-solutions .final-cta {
+            padding: var(--spacing-xl) 2rem;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.1) 0%, transparent 70%),
+                var(--dark-bg);
+        }
+
+        .btk-solutions .final-cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--dark-card);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            box-shadow: 0 20px 60px rgba(249, 115, 22, 0.1);
+        }
+
+        .btk-solutions .final-cta h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .btk-solutions .final-cta p {
+            font-size: 1.1rem;
+            color: #a3a3a3;
+            margin-bottom: 2.5rem;
+        }
+
+        .btk-solutions .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btk-solutions .btn-primary {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px var(--orange-glow);
+            font-size: 1.05rem;
+        }
+
+        .btk-solutions .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px var(--orange-glow);
+        }
+
+        .btk-solutions .btn-secondary {
+            background: transparent;
+            color: #e5e5e5;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.05rem;
+        }
+
+        .btk-solutions .btn-secondary:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll Animations */
+        .btk-solutions .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .btk-solutions .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .btk-solutions .solution-section {
+                padding: var(--spacing-lg) 1.5rem;
+            }
+
+            .btk-solutions .comparison-section {
+                padding: var(--spacing-lg) 1.5rem;
+            }
+
+            .btk-solutions .final-cta {
+                padding: var(--spacing-lg) 1.5rem;
+            }
+
+            .btk-solutions .final-cta-container {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .btk-solutions .hero {
+                padding: 10rem 1.5rem 6rem;
+            }
+
+            .btk-solutions .solution-header {
+                flex-direction: column;
+                gap: 1rem;
+                margin-bottom: 3rem;
+            }
+
+            .btk-solutions .solution-icon {
+                font-size: 3rem;
+            }
+
+            .btk-solutions .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btk-solutions .pain-point-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .btk-solutions .pain-point-problem,
+            .btk-solutions .pain-point-solution {
+                text-align: left;
+            }
+
+            .btk-solutions .pain-point-arrow {
+                text-align: center;
+            }
+
+            .btk-solutions .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btk-solutions .clients-list {
+                flex-direction: column;
+            }
+
+            .btk-solutions .client-tag {
+                text-align: center;
+            }
+
+            .btk-solutions th, .btk-solutions td {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .btk-solutions .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btk-solutions .btn-primary,
+            .btk-solutions .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container fade-in">
+            <h1>업종이 다르면,<br>주방도 달라야 합니다</h1>
+            <p class="subtitle">
+                <span class="highlight">25년 현장 경험</span>으로<br>
+                업종별 최적의 솔루션을 제공합니다
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution 1: Franchise -->
+    <section class="solution-section solution-franchise">
+        <div class="solution-container">
+            <div class="solution-header fade-in">
+                <div class="solution-icon">🏢</div>
+                <div class="solution-title-group">
+                    <h2>프랜차이즈</h2>
+                    <p class="solution-tagline">전국 매장의 맛과 품질을 동일하게</p>
+                </div>
+            </div>
+
+            <div class="approach-grid fade-in">
+                <div class="approach-card">
+                    <h3>표준 주방 설계안 제작</h3>
+                    <p>본사 승인 후 전 매장에 일괄 적용하여 브랜드 일관성 확보</p>
+                </div>
+                <div class="approach-card">
+                    <h3>장비 규격 통일</h3>
+                    <p>대량 구매를 통한 원가 절감 및 유지보수 효율성 극대화</p>
+                </div>
+                <div class="approach-card">
+                    <h3>매장별 커스터마이징</h3>
+                    <p>면적 차이에 맞춘 유연한 설계로 모든 입지에 최적화</p>
+                </div>
+                <div class="approach-card">
+                    <h3>라이프사이클 관리</h3>
+                    <p>신규 오픈부터 리모델링, 폐점 설비 회수까지 전주기 지원</p>
+                </div>
+            </div>
+
+            <div class="clients-section fade-in">
+                <div class="clients-label">대표 고객사</div>
+                <div class="clients-list">
+                    <div class="client-tag">던킨도너츠</div>
+                    <div class="client-tag">교촌치킨</div>
+                    <div class="client-tag">오설록</div>
+                    <div class="client-tag">한솥</div>
+                </div>
+            </div>
+
+            <div class="metrics-grid fade-in">
+                <div class="metric-card">
+                    <div class="metric-number">15%</div>
+                    <div class="metric-label">평균 설비 원가 절감</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">30%</div>
+                    <div class="metric-label">오픈 리드타임 단축</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">최소화</div>
+                    <div class="metric-label">매장간 품질 편차</div>
+                </div>
+            </div>
+
+            <div class="pain-points fade-in">
+                <h3>Pain Point → Solution</h3>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">매장마다 맛이 달라요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">장비 규격 + 온도 세팅 표준화로 일관된 품질 구현</div>
+                    </div>
+                </div>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">오픈 일정이 늘 밀려요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">설계-납품-시공 원스톱으로 병목 제거 및 리드타임 단축</div>
+                    </div>
+                </div>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">장비 고장이 잦아요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">검증된 장비 선정 + 정기 점검 프로그램 운영</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution 2: Cafeteria -->
+    <section class="solution-section solution-cafeteria">
+        <div class="solution-container">
+            <div class="solution-header fade-in">
+                <div class="solution-icon">🍽️</div>
+                <div class="solution-title-group">
+                    <h2>구내식당/급식</h2>
+                    <p class="solution-tagline">대량 급식의 효율과 위생을 동시에</p>
+                </div>
+            </div>
+
+            <div class="approach-grid fade-in">
+                <div class="approach-card">
+                    <h3>식수 기준 동선 최적화</h3>
+                    <p>500식/1,000식/2,000식+ 규모별 맞춤 설계로 운영 효율 극대화</p>
+                </div>
+                <div class="approach-card">
+                    <h3>HACCP 기준 완벽 반영</h3>
+                    <p>식품 안전 규정을 설계 단계부터 반영하여 위생 인증 대비</p>
+                </div>
+                <div class="approach-card">
+                    <h3>에너지 효율 고용량 장비</h3>
+                    <p>대량 조리 전용 장비로 전력 효율성과 생산성 동시 확보</p>
+                </div>
+                <div class="approach-card">
+                    <h3>운영 중 리모델링</h3>
+                    <p>영업일 최소화 구역별 시공으로 급식 중단 없는 공사 진행</p>
+                </div>
+            </div>
+
+            <div class="clients-section fade-in">
+                <div class="clients-label">대표 고객사</div>
+                <div class="clients-list">
+                    <div class="client-tag">삼성전자</div>
+                    <div class="client-tag">CJ프레시웨이</div>
+                    <div class="client-tag">신세계푸드</div>
+                    <div class="client-tag">Welstory</div>
+                    <div class="client-tag">풀무원</div>
+                </div>
+            </div>
+
+            <div class="metrics-grid fade-in">
+                <div class="metric-card">
+                    <div class="metric-number">25%</div>
+                    <div class="metric-label">동선 효율 개선</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">20%</div>
+                    <div class="metric-label">에너지 비용 절감</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">최소화</div>
+                    <div class="metric-label">영업 중단 기간</div>
+                </div>
+            </div>
+
+            <div class="pain-points fade-in">
+                <h3>Pain Point → Solution</h3>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">리모델링 중에도 운영해야 해요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">구역별 순차 시공으로 영업 중단 최소화 및 급식 유지</div>
+                    </div>
+                </div>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">위생 검사가 걱정이에요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">HACCP 기준 설계 + 온도 모니터링 시스템 도입</div>
+                    </div>
+                </div>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">전기 용량이 부족해요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">부하 계산 후 장비 배분 최적화로 기존 인프라 활용</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution 3: Hotel & Resort -->
+    <section class="solution-section solution-hotel">
+        <div class="solution-container">
+            <div class="solution-header fade-in">
+                <div class="solution-icon">🏨</div>
+                <div class="solution-title-group">
+                    <h2>호텔/리조트</h2>
+                    <p class="solution-tagline">프리미엄 품질, 타이트한 일정</p>
+                </div>
+            </div>
+
+            <div class="approach-grid fade-in">
+                <div class="approach-card">
+                    <h3>멀티 아울렛 동시 설계</h3>
+                    <p>레스토랑, 뷔페, 라운지, 룸서비스 등 다수 F&B 공간 통합 관리</p>
+                </div>
+                <div class="approach-card">
+                    <h3>해외 프리미엄 장비 조달</h3>
+                    <p>직수입 및 OEM 맞춤 제작으로 최상급 장비 공급</p>
+                </div>
+                <div class="approach-card">
+                    <h3>인테리어 팀 협업</h3>
+                    <p>디자인과 기능의 완벽한 조화를 위한 긴밀한 일정 조율</p>
+                </div>
+                <div class="approach-card">
+                    <h3>오픈 전 준비 완료</h3>
+                    <p>시운전 및 스태프 교육까지 완료하여 첫날부터 완벽한 서비스</p>
+                </div>
+            </div>
+
+            <div class="clients-section fade-in">
+                <div class="clients-label">대표 고객사</div>
+                <div class="clients-list">
+                    <div class="client-tag">에버랜드</div>
+                    <div class="client-tag">Lakeside CC</div>
+                </div>
+            </div>
+
+            <div class="metrics-grid fade-in">
+                <div class="metric-card">
+                    <div class="metric-number">D-60</div>
+                    <div class="metric-label">오픈 타임라인 준수</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">멀티</div>
+                    <div class="metric-label">아울렛 동시 진행</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">직수입</div>
+                    <div class="metric-label">프리미엄 장비</div>
+                </div>
+            </div>
+
+            <div class="pain-points fade-in">
+                <h3>Pain Point → Solution</h3>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">오픈일이 정해져 있어요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">역산 일정표 작성 + 주간 진행 보고로 데드라인 엄수</div>
+                    </div>
+                </div>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">여러 주방을 동시에 해야 해요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">아울렛별 전담팀 + 통합 PM으로 병렬 진행 관리</div>
+                    </div>
+                </div>
+                <div class="pain-point-item">
+                    <div class="pain-point-problem">
+                        <div class="label">Problem</div>
+                        <div class="text">특수 장비가 필요해요</div>
+                    </div>
+                    <div class="pain-point-arrow">→</div>
+                    <div class="pain-point-solution">
+                        <div class="label">Solution</div>
+                        <div class="text">해외 소싱 네트워크 + OEM 맞춤 제작 역량 보유</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <div class="comparison-container">
+            <h2 class="fade-in">업종별 비교</h2>
+            <div class="comparison-table fade-in">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>항목</th>
+                                <th>프랜차이즈</th>
+                                <th>구내식당</th>
+                                <th>호텔/리조트</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>핵심 가치</td>
+                                <td>표준화</td>
+                                <td>효율+위생</td>
+                                <td>프리미엄</td>
+                            </tr>
+                            <tr>
+                                <td>설계 방식</td>
+                                <td>표준안+커스텀</td>
+                                <td>식수 기준</td>
+                                <td>멀티 아울렛</td>
+                            </tr>
+                            <tr>
+                                <td>납품 특징</td>
+                                <td>대량 구매</td>
+                                <td>고용량</td>
+                                <td>해외 직수입</td>
+                            </tr>
+                            <tr>
+                                <td>시공 특징</td>
+                                <td>빠른 오픈</td>
+                                <td>영업중 시공</td>
+                                <td>정밀 시공</td>
+                            </tr>
+                            <tr>
+                                <td>사후 관리</td>
+                                <td>라이프사이클</td>
+                                <td>HACCP 대비</td>
+                                <td>전담 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-container fade-in">
+            <h2>우리 업종에 맞는 솔루션이<br>궁금하다면</h2>
+            <p>25년 경험의 전문가가 직접 상담해 드립니다</p>
+            <div class="cta-buttons">
+                <a href="https://www.busungtk.com" class="btn-primary">무료 상담 요청</a>
+                <a href="digital-partnership.html" class="btn-secondary">디지털 협업 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements within .btk-solutions
+            document.querySelectorAll('.btk-solutions .fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links within .btk-solutions
+            document.querySelectorAll('.btk-solutions a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        })();
+    </script>
+</div>

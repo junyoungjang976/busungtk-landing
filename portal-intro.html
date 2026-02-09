@@ -1,0 +1,1192 @@
+<div class="btk-portal">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.btk-portal {
+    --dark-bg: #0a0a0a;
+    --dark-card: #1a1a1a;
+    --dark-lighter: #2a2a2a;
+    --orange: #f97316;
+    --orange-dark: #ea580c;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --border: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.btk-portal * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hero Section */
+.btk-portal .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem 2rem 4rem;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.08) 0%, transparent 50%);
+}
+
+.btk-portal .hero-content {
+    max-width: 900px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.btk-portal .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(13, 148, 136, 0.1);
+    border: 1px solid rgba(13, 148, 136, 0.3);
+    border-radius: 50px;
+    color: var(--teal-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 0.5px;
+}
+
+.btk-portal .hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btk-portal .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.btk-portal .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btk-portal .primary-button {
+    padding: 1.25rem 3rem;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(13, 148, 136, 0.3);
+}
+
+.btk-portal .primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(13, 148, 136, 0.5);
+}
+
+.btk-portal .secondary-button {
+    padding: 1.25rem 3rem;
+    background: transparent;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 2px solid var(--border);
+    transition: all 0.3s;
+}
+
+.btk-portal .secondary-button:hover {
+    border-color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Section */
+.btk-portal .section {
+    padding: 8rem 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.btk-portal .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.btk-portal .section-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-portal .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 50px;
+    color: var(--orange);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.btk-portal .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.btk-portal .section-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Feature Cards */
+.btk-portal .feature-grid {
+    display: grid;
+    gap: 6rem;
+}
+
+.btk-portal .feature-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.btk-portal .feature-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-portal .feature-card:nth-child(even) .feature-content {
+    order: 2;
+}
+
+.btk-portal .feature-card:nth-child(even) .feature-visual {
+    order: 1;
+}
+
+.btk-portal .feature-content {
+    padding: 2rem;
+}
+
+.btk-portal .feature-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.btk-portal .feature-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.btk-portal .feature-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.btk-portal .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btk-portal .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.btk-portal .feature-list li::before {
+    content: "✓";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(13, 148, 136, 0.2);
+    color: var(--teal-light);
+    border-radius: 50%;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Mock Portal UI */
+.btk-portal .feature-visual {
+    position: relative;
+    height: 500px;
+}
+
+.btk-portal .mock-ui {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    height: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-portal .mock-ui::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+}
+
+.btk-portal .mock-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.btk-portal .mock-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--dark-lighter);
+}
+
+.btk-portal .mock-dot:nth-child(1) {
+    background: #ef4444;
+}
+
+.btk-portal .mock-dot:nth-child(2) {
+    background: #f59e0b;
+}
+
+.btk-portal .mock-dot:nth-child(3) {
+    background: #10b981;
+}
+
+/* Dashboard Mock */
+.btk-portal .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btk-portal .dashboard-card {
+    background: rgba(13, 148, 136, 0.1);
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.btk-portal .dashboard-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--teal-light);
+    margin-bottom: 0.5rem;
+}
+
+.btk-portal .dashboard-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.btk-portal .dashboard-list {
+    background: var(--dark-lighter);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.btk-portal .dashboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: rgba(13, 148, 136, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.btk-portal .dashboard-item:last-child {
+    margin-bottom: 0;
+}
+
+.btk-portal .status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.btk-portal .status-active {
+    background: rgba(13, 148, 136, 0.2);
+    color: var(--teal-light);
+}
+
+.btk-portal .status-warning {
+    background: rgba(249, 115, 22, 0.2);
+    color: var(--orange);
+}
+
+.btk-portal .status-urgent {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+/* Store List Mock */
+.btk-portal .store-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btk-portal .store-card {
+    background: var(--dark-lighter);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--teal);
+}
+
+.btk-portal .store-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.btk-portal .store-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.btk-portal .store-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+
+.btk-portal .store-stat {
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(13, 148, 136, 0.05);
+    border-radius: 6px;
+}
+
+.btk-portal .store-stat-value {
+    font-weight: 700;
+    color: var(--teal-light);
+}
+
+/* Equipment List Mock */
+.btk-portal .equipment-table {
+    background: var(--dark-lighter);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.btk-portal .table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(13, 148, 136, 0.1);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--teal-light);
+}
+
+.btk-portal .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    align-items: center;
+}
+
+.btk-portal .table-row:last-child {
+    border-bottom: none;
+}
+
+/* Financial Chart Mock */
+.btk-portal .chart-container {
+    background: var(--dark-lighter);
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: calc(100% - 80px);
+}
+
+.btk-portal .chart-header {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--teal-light);
+}
+
+.btk-portal .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 250px;
+    gap: 0.5rem;
+}
+
+.btk-portal .chart-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--teal-light), var(--teal));
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    min-height: 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+
+.btk-portal .chart-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--dark-bg);
+}
+
+.btk-portal .chart-labels {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* AS Form Mock */
+.btk-portal .form-mock {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.btk-portal .form-field {
+    background: var(--dark-lighter);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.btk-portal .form-field.large {
+    height: 100px;
+}
+
+.btk-portal .form-button {
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Maintenance Schedule Mock */
+.btk-portal .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btk-portal .schedule-item {
+    background: var(--dark-lighter);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btk-portal .schedule-info h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.btk-portal .schedule-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.btk-portal .schedule-dday {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--teal-light);
+    text-align: center;
+}
+
+.btk-portal .schedule-dday small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* How It Works */
+.btk-portal .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.btk-portal .step-card {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.btk-portal .step-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-portal .step-number {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    box-shadow: 0 8px 30px rgba(13, 148, 136, 0.3);
+}
+
+.btk-portal .step-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.btk-portal .step-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* CTA Section */
+.btk-portal .cta-section {
+    background: linear-gradient(135deg,
+        rgba(13, 148, 136, 0.1) 0%,
+        rgba(249, 115, 22, 0.1) 100%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 5rem 3rem;
+    text-align: center;
+    margin: 8rem auto;
+    max-width: 1000px;
+}
+
+.btk-portal .cta-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.btk-portal .cta-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btk-portal .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Footer */
+.btk-portal .footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .btk-portal .hero h1 {
+        font-size: 3rem;
+    }
+
+    .btk-portal .section-title {
+        font-size: 2.5rem;
+    }
+
+    .btk-portal .feature-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .btk-portal .feature-card:nth-child(even) .feature-content {
+        order: 1;
+    }
+
+    .btk-portal .feature-card:nth-child(even) .feature-visual {
+        order: 2;
+    }
+
+    .btk-portal .feature-visual {
+        height: 400px;
+    }
+
+    .btk-portal .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .btk-portal .hero {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .btk-portal .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .btk-portal .hero-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .btk-portal .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btk-portal .section {
+        padding: 4rem 1.5rem;
+    }
+
+    .btk-portal .section-title {
+        font-size: 2rem;
+    }
+
+    .btk-portal .feature-title {
+        font-size: 2rem;
+    }
+
+    .btk-portal .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-portal .table-header,
+    .btk-portal .table-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .btk-portal .chart-bars {
+        height: 200px;
+    }
+
+    .btk-portal .cta-section {
+        padding: 3rem 2rem;
+    }
+
+    .btk-portal .cta-title {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">고객 전용 포털</div>
+        <h1>내 매장의 모든 것,<br>한눈에</h1>
+        <p class="hero-subtitle">부성티케이 고객 전용 포털에서<br>장비, 정비, A/S를 실시간으로 관리하세요</p>
+        <div class="hero-buttons">
+            <a href="https://equipment-manager-brown.vercel.app/portal/login" class="primary-button" target="_blank">데모 체험하기</a>
+            <a href="#how-it-works" class="secondary-button">작동 방식 알아보기</a>
+        </div>
+    </div>
+</section>
+
+<!-- Feature 1: Dashboard -->
+<section class="section">
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-content">
+                <div class="feature-number">FEATURE 01</div>
+                <h2 class="feature-title">통합 대시보드</h2>
+                <p class="feature-description">모든 정보를 한 화면에서 실시간으로 확인하세요</p>
+                <ul class="feature-list">
+                    <li>매장별 장비 현황 한눈에 파악</li>
+                    <li>정비 예정 및 긴급 알림</li>
+                    <li>A/S 진행 상태 실시간 추적</li>
+                    <li>주요 지표 요약 카드</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="mock-ui">
+                    <div class="mock-header">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="dashboard-value">24</div>
+                            <div class="dashboard-label">전체 장비</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="dashboard-value">3</div>
+                            <div class="dashboard-label">정비 예정</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="dashboard-value">1</div>
+                            <div class="dashboard-label">진행중 A/S</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-list">
+                        <div class="dashboard-item">
+                            <span>강남점 - 냉장고 정비</span>
+                            <span class="status-badge status-warning">D-3</span>
+                        </div>
+                        <div class="dashboard-item">
+                            <span>홍대점 - 오븐 수리</span>
+                            <span class="status-badge status-active">진행중</span>
+                        </div>
+                        <div class="dashboard-item">
+                            <span>잠실점 - 가스레인지 점검</span>
+                            <span class="status-badge status-urgent">긴급</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 2: Store Status -->
+        <div class="feature-card">
+            <div class="feature-content">
+                <div class="feature-number">FEATURE 02</div>
+                <h2 class="feature-title">매장별 현황</h2>
+                <p class="feature-description">보유하신 모든 매장의 상태를 체계적으로 관리하세요</p>
+                <ul class="feature-list">
+                    <li>보유 매장 리스트 조회</li>
+                    <li>매장별 장비/정비/A/S 탭 뷰</li>
+                    <li>장비 상태 배지 (정상/점검필요/수리중)</li>
+                    <li>정비 D-day 카운트다운</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="mock-ui">
+                    <div class="mock-header">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div class="store-list">
+                        <div class="store-card">
+                            <div class="store-header">
+                                <div class="store-name">강남 본점</div>
+                                <div class="status-badge status-active">정상</div>
+                            </div>
+                            <div class="store-stats">
+                                <div class="store-stat">
+                                    <div class="store-stat-value">8</div>
+                                    <div>장비</div>
+                                </div>
+                                <div class="store-stat">
+                                    <div class="store-stat-value">1</div>
+                                    <div>정비예정</div>
+                                </div>
+                                <div class="store-stat">
+                                    <div class="store-stat-value">0</div>
+                                    <div>A/S</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="store-card">
+                            <div class="store-header">
+                                <div class="store-name">홍대 지점</div>
+                                <div class="status-badge status-warning">점검필요</div>
+                            </div>
+                            <div class="store-stats">
+                                <div class="store-stat">
+                                    <div class="store-stat-value">10</div>
+                                    <div>장비</div>
+                                </div>
+                                <div class="store-stat">
+                                    <div class="store-stat-value">2</div>
+                                    <div>정비예정</div>
+                                </div>
+                                <div class="store-stat">
+                                    <div class="store-stat-value">1</div>
+                                    <div>A/S</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="store-card">
+                            <div class="store-header">
+                                <div class="store-name">잠실 지점</div>
+                                <div class="status-badge status-active">정상</div>
+                            </div>
+                            <div class="store-stats">
+                                <div class="store-stat">
+                                    <div class="store-stat-value">6</div>
+                                    <div>장비</div>
+                                </div>
+                                <div class="store-stat">
+                                    <div class="store-stat-value">0</div>
+                                    <div>정비예정</div>
+                                </div>
+                                <div class="store-stat">
+                                    <div class="store-stat-value">0</div>
+                                    <div>A/S</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 3: Equipment Management -->
+        <div class="feature-card">
+            <div class="feature-content">
+                <div class="feature-number">FEATURE 03</div>
+                <h2 class="feature-title">장비 관리</h2>
+                <p class="feature-description">모든 장비의 상세 정보와 이력을 체계적으로 관리하세요</p>
+                <ul class="feature-list">
+                    <li>전체 장비 목록 및 상세 정보</li>
+                    <li>구매일, 보증기간, 감가상각 정보</li>
+                    <li>장비별 A/S 이력 조회</li>
+                    <li>카테고리/제조사별 필터</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="mock-ui">
+                    <div class="mock-header">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div class="equipment-table">
+                        <div class="table-header">
+                            <div>장비명</div>
+                            <div>매장</div>
+                            <div>상태</div>
+                            <div>다음정비</div>
+                        </div>
+                        <div class="table-row">
+                            <div>업소용 냉장고 (1800L)</div>
+                            <div>강남점</div>
+                            <div class="status-badge status-active">정상</div>
+                            <div>30일 후</div>
+                        </div>
+                        <div class="table-row">
+                            <div>컨벡션 오븐</div>
+                            <div>홍대점</div>
+                            <div class="status-badge status-warning">점검필요</div>
+                            <div>3일 후</div>
+                        </div>
+                        <div class="table-row">
+                            <div>가스레인지 (6구)</div>
+                            <div>잠실점</div>
+                            <div class="status-badge status-active">정상</div>
+                            <div>45일 후</div>
+                        </div>
+                        <div class="table-row">
+                            <div>식기세척기</div>
+                            <div>강남점</div>
+                            <div class="status-badge status-urgent">수리중</div>
+                            <div>-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 4: Financial Overview -->
+        <div class="feature-card">
+            <div class="feature-content">
+                <div class="feature-number">FEATURE 04</div>
+                <h2 class="feature-title">재무 현황</h2>
+                <p class="feature-description">장비 운영 비용을 한눈에 파악하고 최적화하세요</p>
+                <ul class="feature-list">
+                    <li>장비 감가상각 현황</li>
+                    <li>TCO(총소유비용) 분석</li>
+                    <li>월별 유지보수 비용 추이</li>
+                    <li>시각적 차트 표현</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="mock-ui">
+                    <div class="mock-header">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-header">월별 유지보수 비용 (단위: 만원)</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar" style="height: 60%;">
+                                <span class="chart-value">120</span>
+                            </div>
+                            <div class="chart-bar" style="height: 45%;">
+                                <span class="chart-value">90</span>
+                            </div>
+                            <div class="chart-bar" style="height: 80%;">
+                                <span class="chart-value">160</span>
+                            </div>
+                            <div class="chart-bar" style="height: 55%;">
+                                <span class="chart-value">110</span>
+                            </div>
+                            <div class="chart-bar" style="height: 70%;">
+                                <span class="chart-value">140</span>
+                            </div>
+                            <div class="chart-bar" style="height: 40%;">
+                                <span class="chart-value">80</span>
+                            </div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>1월</span>
+                            <span>2월</span>
+                            <span>3월</span>
+                            <span>4월</span>
+                            <span>5월</span>
+                            <span>6월</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 5: A/S Request -->
+        <div class="feature-card">
+            <div class="feature-content">
+                <div class="feature-number">FEATURE 05</div>
+                <h2 class="feature-title">A/S 접수 & 이력</h2>
+                <p class="feature-description">포털에서 직접 A/S를 접수하고 진행 상황을 실시간으로 확인하세요</p>
+                <ul class="feature-list">
+                    <li>포털에서 직접 A/S 접수</li>
+                    <li>접수→진행→완료 실시간 상태 추적</li>
+                    <li>사진 첨부 및 상세 설명</li>
+                    <li>과거 이력 전체 조회</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="mock-ui">
+                    <div class="mock-header">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div class="form-mock">
+                        <div class="form-field">매장 선택: 강남 본점</div>
+                        <div class="form-field">장비 선택: 업소용 냉장고 (1800L)</div>
+                        <div class="form-field">증상 선택: 냉각 성능 저하</div>
+                        <div class="form-field large">상세 설명: 최근 며칠간 냉장고 온도가 설정 온도보다 높게 유지되고 있습니다...</div>
+                        <div class="form-field">사진 첨부: 📷 image1.jpg, image2.jpg</div>
+                        <div class="form-button">A/S 접수하기</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 6: Maintenance Schedule -->
+        <div class="feature-card">
+            <div class="feature-content">
+                <div class="feature-number">FEATURE 06</div>
+                <h2 class="feature-title">정비 일정</h2>
+                <p class="feature-description">자동 정비 알림으로 장비를 최적의 상태로 유지하세요</p>
+                <ul class="feature-list">
+                    <li>자동 정비 일정 알림</li>
+                    <li>D-day 기반 우선순위 표시</li>
+                    <li>정비 완료 이력 관리</li>
+                    <li>정비 주기 자동 계산</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="mock-ui">
+                    <div class="mock-header">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <div class="schedule-info">
+                                <h4>홍대점 - 컨벡션 오븐</h4>
+                                <p>정기 점검 및 청소</p>
+                            </div>
+                            <div class="schedule-dday">
+                                D-3
+                                <small>2026-02-12</small>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-info">
+                                <h4>강남점 - 냉장고</h4>
+                                <p>냉매 점검 및 필터 교체</p>
+                            </div>
+                            <div class="schedule-dday">
+                                D-15
+                                <small>2026-02-24</small>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-info">
+                                <h4>잠실점 - 가스레인지</h4>
+                                <p>가스 안전 점검</p>
+                            </div>
+                            <div class="schedule-dday">
+                                D-30
+                                <small>2026-03-11</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="section" id="how-it-works">
+    <div class="section-header">
+        <div class="section-badge">시작하기</div>
+        <h2 class="section-title">포털 이용 방법</h2>
+        <p class="section-description">3단계로 시작하는 스마트한 장비 관리</p>
+    </div>
+    <div class="steps-grid">
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h3 class="step-title">계약 체결</h3>
+            <p class="step-description">부성티케이와 장비 구매 또는 유지보수 계약을 체결합니다</p>
+        </div>
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h3 class="step-title">계정 발급</h3>
+            <p class="step-description">고객 전용 포털 접속을 위한 계정이 자동으로 발급됩니다</p>
+        </div>
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h3 class="step-title">실시간 관리</h3>
+            <p class="step-description">PC나 모바일에서 언제 어디서나 장비를 관리하세요</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <h2 class="cta-title">지금 포털을 체험해보세요</h2>
+    <p class="cta-description">실제 포털 환경에서 모든 기능을 직접 사용해보실 수 있습니다</p>
+    <div class="cta-buttons">
+        <a href="https://equipment-manager-brown.vercel.app/portal/login" class="primary-button" target="_blank">데모 체험하기</a>
+        <a href="https://www.busungtk.com" class="secondary-button">메인페이지 바로가기</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2026 부성티케이. All rights reserved.</p>
+</footer>
+
+<script>
+(function() {
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all animatable elements within .btk-portal
+    const portalContainer = document.querySelector('.btk-portal');
+    if (portalContainer) {
+        portalContainer.querySelectorAll('.section-header, .feature-card, .step-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        portalContainer.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = portalContainer.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+})();
+</script>
+</div>
