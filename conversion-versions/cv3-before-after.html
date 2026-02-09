@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부성티케이 - 비포→애프터</title>
+</head>
+<body>
+<div class="btk-lp">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.btk-lp * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btk-lp {
+    --orange: #FF6B35;
+    --orange-dark: #E85D2C;
+    --red: #DC2626;
+    --red-dark: #991B1B;
+    --green: #10B981;
+    --dark-bg: #111111;
+    --dark-card: #1a1a1a;
+    --dark-lighter: #2a2a2a;
+    --gray: #6B7280;
+    --text-gray: #9CA3AF;
+    --white: #ffffff;
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.btk-lp {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--dark-bg);
+    color: var(--white);
+    line-height: 1.7;
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Section Base */
+.btk-lp section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-lp .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btk-lp .section-title {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+
+.btk-lp .section-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* Hero Section - Split Comparison */
+.btk-lp #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--dark-bg);
+    padding-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-lp .hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+    position: relative;
+}
+
+.btk-lp .hero-side {
+    padding: 4rem 3rem;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.btk-lp .hero-side.left {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(107, 114, 128, 0.15) 100%);
+    border-right: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+.btk-lp .hero-side.right {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+}
+
+.btk-lp .hero-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btk-lp .hero-side.left .hero-label {
+    color: var(--red);
+}
+
+.btk-lp .hero-side.right .hero-label {
+    color: var(--orange);
+}
+
+.btk-lp .hero-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.btk-lp .hero-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.btk-lp .hero-list .icon {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+.btk-lp .hero-side.left .hero-list .icon {
+    color: var(--red);
+}
+
+.btk-lp .hero-side.right .hero-list .icon {
+    color: var(--green);
+}
+
+.btk-lp .hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    background: var(--dark-bg);
+    padding: 3rem 4rem;
+    border-radius: 20px;
+    border: 3px solid var(--orange);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+}
+
+.btk-lp .hero-headline {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 2rem;
+    white-space: pre-line;
+}
+
+.btk-lp .hero-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btk-lp .hero-stat {
+    text-align: center;
+}
+
+.btk-lp .hero-stat-number {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--orange);
+}
+
+.btk-lp .hero-stat-label {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.btk-lp .hero-cta {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .hero-cta:hover {
+    background: var(--orange-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
+}
+
+/* Comparison Table Section */
+.btk-lp #comparison {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #0a0a0a 100%);
+}
+
+.btk-lp .comparison-table {
+    margin-top: 3rem;
+    background: var(--dark-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .comparison-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btk-lp .comparison-row:last-child {
+    border-bottom: none;
+}
+
+.btk-lp .comparison-row.header {
+    background: rgba(255, 107, 53, 0.1);
+}
+
+.btk-lp .comparison-cell {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.btk-lp .comparison-cell.label {
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: rgba(255, 107, 53, 0.05);
+}
+
+.btk-lp .comparison-cell.competitor {
+    color: var(--text-gray);
+}
+
+.btk-lp .comparison-cell.us {
+    color: var(--white);
+}
+
+.btk-lp .comparison-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.btk-lp .comparison-cell.competitor .comparison-icon {
+    color: var(--red);
+}
+
+.btk-lp .comparison-cell.us .comparison-icon {
+    color: var(--green);
+}
+
+.btk-lp .comparison-row.header .comparison-cell {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.btk-lp .comparison-row.header .comparison-cell:nth-child(2) {
+    color: var(--red);
+}
+
+.btk-lp .comparison-row.header .comparison-cell:nth-child(3) {
+    color: var(--orange);
+}
+
+/* Data Proof Section - Bar Comparisons */
+.btk-lp #data-proof {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .data-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    transition: all 0.4s ease;
+}
+
+.btk-lp .data-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 25px 70px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .data-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.btk-lp .data-comparison {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    align-items: flex-end;
+}
+
+.btk-lp .data-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btk-lp .data-bar-label {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.btk-lp .data-bar.competitor .data-bar-label {
+    color: var(--red);
+}
+
+.btk-lp .data-bar.us .data-bar-label {
+    color: var(--orange);
+}
+
+.btk-lp .data-bar-visual {
+    height: 200px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--white);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .data-bar.competitor .data-bar-visual {
+    background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+}
+
+.btk-lp .data-bar.us .data-bar-visual {
+    background: linear-gradient(180deg, var(--green) 0%, #059669 100%);
+}
+
+.btk-lp .data-message {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.btk-lp .data-bottom {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2.5rem;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 12px;
+    border-left: 4px solid var(--orange);
+}
+
+.btk-lp .data-bottom-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.btk-lp .data-bottom .hero-cta {
+    margin-top: 1.5rem;
+}
+
+/* Cost Comparison Section */
+.btk-lp #cost {
+    padding: 8rem 0;
+    background: #0a0a0a;
+}
+
+.btk-lp .cost-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .cost-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 3px solid;
+}
+
+.btk-lp .cost-card.competitor {
+    border-color: var(--red);
+}
+
+.btk-lp .cost-card.us {
+    border-color: var(--orange);
+}
+
+.btk-lp .cost-card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.btk-lp .cost-card-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .cost-card.competitor .cost-card-title {
+    color: var(--red);
+}
+
+.btk-lp .cost-card.us .cost-card-title {
+    color: var(--orange);
+}
+
+.btk-lp .cost-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btk-lp .cost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.btk-lp .cost-item-label {
+    font-size: 1rem;
+    color: var(--text-gray);
+}
+
+.btk-lp .cost-item-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.btk-lp .cost-card.competitor .cost-item-value {
+    color: var(--red);
+}
+
+.btk-lp .cost-card.us .cost-item-value {
+    color: var(--green);
+}
+
+.btk-lp .cost-total {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.btk-lp .cost-total-label {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .cost-total-value {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.btk-lp .cost-card.competitor .cost-total-value {
+    color: var(--red);
+}
+
+.btk-lp .cost-card.us .cost-total-value {
+    color: var(--orange);
+}
+
+.btk-lp .cost-message {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+/* Process Section - Comparison Twist */
+.btk-lp #process {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .process-step {
+    background: var(--dark-card);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+}
+
+.btk-lp .process-step-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.btk-lp .process-step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.btk-lp .process-step-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.btk-lp .process-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.btk-lp .process-side {
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.btk-lp .process-side.competitor {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.btk-lp .process-side.us {
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.btk-lp .process-side-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.btk-lp .process-side.competitor .process-side-label {
+    color: var(--red);
+}
+
+.btk-lp .process-side.us .process-side-label {
+    color: var(--orange);
+}
+
+.btk-lp .process-side-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+/* Scenarios Section */
+.btk-lp #scenarios {
+    padding: 8rem 0;
+    background: #0a0a0a;
+}
+
+.btk-lp .scenario-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .scenario-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    transition: all 0.4s ease;
+}
+
+.btk-lp .scenario-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--orange);
+    box-shadow: 0 25px 70px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .scenario-icon {
+    font-size: 2.5rem;
+}
+
+.btk-lp .scenario-type {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+.btk-lp .scenario-title {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-top: 0.5rem;
+}
+
+.btk-lp .scenario-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.btk-lp .scenario-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.btk-lp .scenario-arrow {
+    flex-shrink: 0;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.btk-lp .step-text {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+/* Digital Section */
+.btk-lp #digital {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .digital-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .digital-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.08) 100%);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .digital-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+}
+
+.btk-lp .digital-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.btk-lp .digital-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.btk-lp .digital-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* References Section */
+.btk-lp #references {
+    padding: 8rem 0;
+    background: #0a0a0a;
+}
+
+.btk-lp .clients {
+    margin-top: 3rem;
+    padding: 3rem;
+    background: var(--dark-card);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.btk-lp .clients-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.btk-lp .client-name {
+    padding: 0.7rem 1.5rem;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btk-lp .client-name:hover {
+    background: rgba(255, 107, 53, 0.2);
+    border-color: var(--orange);
+}
+
+.btk-lp .industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .industry-tag {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--text-gray);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+/* FAQ Section */
+.btk-lp #faq {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .faq-list {
+    max-width: 900px;
+    margin: 3rem auto 0;
+}
+
+.btk-lp .faq-item {
+    background: var(--dark-card);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .faq-item:hover {
+    border-color: var(--orange);
+}
+
+.btk-lp .faq-question {
+    padding: 1.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .faq-question:hover {
+    color: var(--orange);
+}
+
+.btk-lp .faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--orange);
+}
+
+.btk-lp .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.btk-lp .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.btk-lp .faq-answer-content {
+    padding: 0 2rem 1.8rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+}
+
+.btk-lp .faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+/* Final CTA Section */
+.btk-lp #final-cta {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, var(--orange-dark) 0%, var(--orange) 100%);
+}
+
+.btk-lp .final-cta-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.btk-lp .final-cta-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 3rem;
+    color: var(--white);
+    white-space: pre-line;
+}
+
+.btk-lp .final-cta-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.btk-lp .final-cta-button {
+    padding: 1.3rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.btk-lp .final-cta-button.primary {
+    background: var(--white);
+    color: var(--orange);
+}
+
+.btk-lp .final-cta-button.primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
+}
+
+.btk-lp .final-cta-button.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btk-lp .final-cta-button.secondary:hover {
+    background: var(--white);
+    color: var(--orange);
+    transform: translateY(-4px);
+}
+
+.btk-lp .final-cta-footer {
+    padding-top: 3rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btk-lp .final-cta-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--white);
+}
+
+/* Floating CTA Button */
+.btk-lp .floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .floating-cta:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btk-lp {
+        font-size: 17px !important;
+    }
+
+    .btk-lp .section-title {
+        font-size: 2rem;
+    }
+
+    .btk-lp .section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btk-lp .hero-split {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .hero-side {
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .btk-lp .hero-side.left {
+        border-right: none;
+        border-bottom: 2px solid rgba(220, 38, 38, 0.3);
+    }
+
+    .btk-lp .hero-overlay {
+        position: static;
+        transform: none;
+        margin-top: 2rem;
+        padding: 2rem;
+    }
+
+    .btk-lp .hero-headline {
+        font-size: 2rem;
+    }
+
+    .btk-lp .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btk-lp .comparison-row {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .comparison-cell.label {
+        background: var(--orange);
+        color: var(--white);
+    }
+
+    .btk-lp .comparison-row.header .comparison-cell:first-child {
+        display: none;
+    }
+
+    .btk-lp .data-grid,
+    .btk-lp .cost-cards,
+    .btk-lp .scenario-cards,
+    .btk-lp .digital-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .data-comparison {
+        gap: 1.5rem;
+    }
+
+    .btk-lp .data-bar-visual {
+        height: 150px;
+    }
+
+    .btk-lp .process-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .final-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btk-lp .final-cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .btk-lp .floating-cta {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .btk-lp section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .btk-lp .container {
+        padding: 0 1rem;
+    }
+
+    .btk-lp #hero,
+    .btk-lp #comparison,
+    .btk-lp #data-proof,
+    .btk-lp #cost,
+    .btk-lp #process,
+    .btk-lp #scenarios,
+    .btk-lp #digital,
+    .btk-lp #references,
+    .btk-lp #faq,
+    .btk-lp #final-cta {
+        padding: 5rem 0;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .btk-lp .hero-overlay {
+        padding: 2rem 3rem;
+    }
+
+    .btk-lp .comparison-row {
+        grid-template-columns: 150px 1fr 1fr;
+    }
+
+    .btk-lp .data-grid,
+    .btk-lp .cost-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .digital-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+
+<!-- Hero Section - Split Comparison -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-split">
+            <div class="hero-side left">
+                <div class="hero-label">일반 시공사</div>
+                <ul class="hero-list">
+                    <li>
+                        <span class="icon">✗</span>
+                        <span>설치만 하고 끝</span>
+                    </li>
+                    <li>
+                        <span class="icon">✗</span>
+                        <span>업체별 따로 관리</span>
+                    </li>
+                    <li>
+                        <span class="icon">✗</span>
+                        <span>문제 생기면 책임 회피</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hero-side right">
+                <div class="hero-label">부성티케이</div>
+                <ul class="hero-list">
+                    <li>
+                        <span class="icon">✓</span>
+                        <span>설계부터 A/S까지 원팀</span>
+                    </li>
+                    <li>
+                        <span class="icon">✓</span>
+                        <span>한 담당자가 전체 조율</span>
+                    </li>
+                    <li>
+                        <span class="icon">✓</span>
+                        <span>문제 생기면 즉시 대응</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="hero-overlay">
+            <h1 class="hero-headline">같은 주방,
+다른 결과</h1>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">25년+</div>
+                    <div class="hero-stat-label">전문 경력</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">1,000+</div>
+                    <div class="hero-stat-label">신뢰 고객</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">ONE-CARE</div>
+                    <div class="hero-stat-label">통합 서비스</div>
+                </div>
+            </div>
+            <a href="https://www.busungtk.com" class="hero-cta">차이를 직접 확인하세요</a>
+        </div>
+    </div>
+</section>
+
+<!-- Comparison Table Section -->
+<section id="comparison">
+    <div class="container">
+        <h2 class="section-title">항목별로 비교하면
+차이가 보입니다</h2>
+        <p class="section-subtitle">왜 같은 주방인데 결과가 다를까요?</p>
+
+        <div class="comparison-table">
+            <div class="comparison-row header">
+                <div class="comparison-cell label">항목</div>
+                <div class="comparison-cell">일반 시공사</div>
+                <div class="comparison-cell">부성티케이</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">설계</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>간단한 배치도</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>동선·부하·배기 정밀 설계</span>
+                </div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">시공팀</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>매번 다른 외주 인력</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>내부 매뉴얼 기반 전문팀</span>
+                </div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">협력사 조율</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>고객이 직접 조율</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>PM 역할로 전체 조율</span>
+                </div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">장비 소싱</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>단일 브랜드</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>브랜드 비교, OEM/ODM 맞춤</span>
+                </div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">A/S</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>보증 끝나면 끝</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>전담 담당자 + 디지털 관리</span>
+                </div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">견적 투명성</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>추가 비용 빈번</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>사전 명시, 추가 시 사전 협의</span>
+                </div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell label">디지털 관리</div>
+                <div class="comparison-cell competitor">
+                    <span class="comparison-icon">✗</span>
+                    <span>없음</span>
+                </div>
+                <div class="comparison-cell us">
+                    <span class="comparison-icon">✓</span>
+                    <span>고객 포털 + AI 진단</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Proof Section -->
+<section id="data-proof">
+    <div class="container">
+        <h2 class="section-title">숫자로 증명되는
+결과의 차이</h2>
+        <p class="section-subtitle">데이터가 말해주는 품질 차이</p>
+
+        <div class="data-grid">
+            <div class="data-card">
+                <h3 class="data-title">설비 고장률</h3>
+                <div class="data-comparison">
+                    <div class="data-bar competitor">
+                        <div class="data-bar-label">타사</div>
+                        <div class="data-bar-visual" style="height: 200px;">100%</div>
+                    </div>
+                    <div class="data-bar us">
+                        <div class="data-bar-label">자사</div>
+                        <div class="data-bar-visual" style="height: 50px;">25%</div>
+                    </div>
+                </div>
+                <p class="data-message">4배 차이 - 저가 설치는 기준 없이 작업하여 편차가 큽니다. 우리는 설계 단계부터 기준을 적용합니다.</p>
+            </div>
+
+            <div class="data-card">
+                <h3 class="data-title">온도 편차</h3>
+                <div class="data-comparison">
+                    <div class="data-bar competitor">
+                        <div class="data-bar-label">타사</div>
+                        <div class="data-bar-visual" style="height: 200px;">100%</div>
+                    </div>
+                    <div class="data-bar us">
+                        <div class="data-bar-label">자사</div>
+                        <div class="data-bar-visual" style="height: 50px;">25%</div>
+                    </div>
+                </div>
+                <p class="data-message">4배 차이 - 장비만 설치하는 것과 공간에 맞춘 세부 튜닝까지 하는 것의 차이입니다.</p>
+            </div>
+
+            <div class="data-card">
+                <h3 class="data-title">매뉴얼 적용</h3>
+                <div class="data-comparison">
+                    <div class="data-bar competitor">
+                        <div class="data-bar-label">타사</div>
+                        <div class="data-bar-visual" style="height: 28px;">14%</div>
+                    </div>
+                    <div class="data-bar us">
+                        <div class="data-bar-label">자사</div>
+                        <div class="data-bar-visual" style="height: 200px;">100%</div>
+                    </div>
+                </div>
+                <p class="data-message">7배 차이 - 작업자마다 품질이 다른 것과, 내부 기준 매뉴얼로 A/S 발생을 줄이는 것의 차이입니다.</p>
+            </div>
+        </div>
+
+        <div class="data-bottom">
+            <p class="data-bottom-text">1cm 차이가 몇 년 뒤 큰 비용 차이를 만듭니다.</p>
+            <a href="https://www.busungtk.com" class="hero-cta">우리 매장 견적 비교해보기</a>
+        </div>
+    </div>
+</section>
+
+<!-- Cost Comparison Section -->
+<section id="cost">
+    <div class="container">
+        <h2 class="section-title">저렴한 시공이
+정말 저렴할까요?</h2>
+        <p class="section-subtitle">3년 총비용으로 비교하면 답이 나옵니다</p>
+
+        <div class="cost-cards">
+            <div class="cost-card competitor">
+                <div class="cost-card-header">
+                    <h3 class="cost-card-title">저가 시공</h3>
+                </div>
+                <div class="cost-timeline">
+                    <div class="cost-item">
+                        <span class="cost-item-label">초기 시공비</span>
+                        <span class="cost-item-value">3,000만원</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-item-label">고장 수리 (1-2년)</span>
+                        <span class="cost-item-value">+1,200만원</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-item-label">A/S 별도</span>
+                        <span class="cost-item-value">+800만원</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-item-label">재시공 (3년)</span>
+                        <span class="cost-item-value">+2,000만원</span>
+                    </div>
+                </div>
+                <div class="cost-total">
+                    <div class="cost-total-label">3년 총비용</div>
+                    <div class="cost-total-value">7,000만원</div>
+                </div>
+            </div>
+
+            <div class="cost-card us">
+                <div class="cost-card-header">
+                    <h3 class="cost-card-title">부성티케이</h3>
+                </div>
+                <div class="cost-timeline">
+                    <div class="cost-item">
+                        <span class="cost-item-label">초기 시공비</span>
+                        <span class="cost-item-value">4,000만원</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-item-label">고장 최소화</span>
+                        <span class="cost-item-value">+200만원</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-item-label">통합 관리 포함</span>
+                        <span class="cost-item-value">포함</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-item-label">재시공 불필요</span>
+                        <span class="cost-item-value">-</span>
+                    </div>
+                </div>
+                <div class="cost-total">
+                    <div class="cost-total-label">3년 총비용</div>
+                    <div class="cost-total-value">4,200만원</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="cost-message">초기 비용이 아닌, 3년 총비용으로 판단하세요.</p>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section id="process">
+    <div class="container">
+        <h2 class="section-title">ONE-CARE:
+한 팀의 책임</h2>
+        <p class="section-subtitle">같은 단계, 다른 접근 방식</p>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="process-step-header">
+                    <div class="process-step-number">1</div>
+                    <h3 class="process-step-title">현장 방문 & 예산 기획</h3>
+                </div>
+                <div class="process-comparison">
+                    <div class="process-side competitor">
+                        <div class="process-side-label">일반</div>
+                        <p class="process-side-text">대충 면적 재고 표준 견적서 제시</p>
+                    </div>
+                    <div class="process-side us">
+                        <div class="process-side-label">부성티케이</div>
+                        <p class="process-side-text">매장 구조와 예산에 맞춘 최적안 제안, 숨은 비용까지 사전 명시</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-header">
+                    <div class="process-step-number">2</div>
+                    <h3 class="process-step-title">주방 설계</h3>
+                </div>
+                <div class="process-comparison">
+                    <div class="process-side competitor">
+                        <div class="process-side-label">일반</div>
+                        <p class="process-side-text">간단한 배치도만 제공</p>
+                    </div>
+                    <div class="process-side us">
+                        <div class="process-side-label">부성티케이</div>
+                        <p class="process-side-text">동선, 부하, 배기까지 고려한 정확한 설계. 1cm 차이가 결과를 만듭니다</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-header">
+                    <div class="process-step-number">3</div>
+                    <h3 class="process-step-title">설비 납품</h3>
+                </div>
+                <div class="process-comparison">
+                    <div class="process-side competitor">
+                        <div class="process-side-label">일반</div>
+                        <p class="process-side-text">단일 브랜드, 재고 중심 제안</p>
+                    </div>
+                    <div class="process-side us">
+                        <div class="process-side-label">부성티케이</div>
+                        <p class="process-side-text">브랜드 비교, OEM/ODM, 맞춤 장비 소싱으로 최적 선택</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-header">
+                    <div class="process-step-number">4</div>
+                    <h3 class="process-step-title">설치/시공</h3>
+                </div>
+                <div class="process-comparison">
+                    <div class="process-side competitor">
+                        <div class="process-side-label">일반</div>
+                        <p class="process-side-text">매번 다른 외주팀, 품질 편차 큼</p>
+                    </div>
+                    <div class="process-side us">
+                        <div class="process-side-label">부성티케이</div>
+                        <p class="process-side-text">내부 매뉴얼 기반 표준 시공, 품질 일관성 보장. 협력사 전체 조율</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-header">
+                    <div class="process-step-number">5</div>
+                    <h3 class="process-step-title">사후 관리</h3>
+                </div>
+                <div class="process-comparison">
+                    <div class="process-side competitor">
+                        <div class="process-side-label">일반</div>
+                        <p class="process-side-text">보증 끝나면 연락 두절, 책임 회피</p>
+                    </div>
+                    <div class="process-side us">
+                        <div class="process-side-label">부성티케이</div>
+                        <p class="process-side-text">전담 담당자 + 디지털 관리 시스템 (A/S, 정비) 지속 관리</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scenarios Section -->
+<section id="scenarios">
+    <div class="container">
+        <h2 class="section-title">실제 프로젝트,
+실제 결과</h2>
+        <p class="section-subtitle">25년 현장 노하우로 다양한 프로젝트를 성공시켰습니다</p>
+
+        <div class="scenario-cards">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🏢</span>
+                    <div>
+                        <div class="scenario-type">프랜차이즈 본사</div>
+                        <div class="scenario-title">"전국 50개 매장의 주방을 표준화해야 합니다"</div>
+                    </div>
+                </div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">표준 설계안 제작</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">지점별 맞춤 장비 납품</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">일관된 시공 품질</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">통합 사후 관리</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🍽️</span>
+                    <div>
+                        <div class="scenario-type">대형 구내식당</div>
+                        <div class="scenario-title">"삼성전자 구내식당 200석 리모델링"</div>
+                    </div>
+                </div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">현장 진단</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">동선 최적화 설계</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">고효율 설비 제안</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">영업일 최소화 시공</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🏨</span>
+                    <div>
+                        <div class="scenario-type">호텔/리조트</div>
+                        <div class="scenario-title">"오픈 D-60, 주방 설비 전체를 맡겨야 합니다"</div>
+                    </div>
+                </div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">예산 기획</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">해외 설비 수입/OEM</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">정밀 시공</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">HACCP 대비까지</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Digital Section -->
+<section id="digital">
+    <div class="container">
+        <h2 class="section-title">디지털 관리
+시스템</h2>
+        <p class="section-subtitle">25년 현장 노하우를 디지털로 체계화</p>
+
+        <div class="digital-grid">
+            <div class="digital-card">
+                <span class="digital-icon">📋</span>
+                <h3 class="digital-title">Notion 기반 실시간 협업</h3>
+                <p class="digital-desc">정보가 사람에게 묶여 있으면 안 됩니다. 모든 프로젝트, 이력, 팀이 같은 화면에서 공유됩니다.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">✍️</span>
+                <h3 class="digital-title">전자 서명 & A/S 관리</h3>
+                <p class="digital-desc">견적서부터 작업완료까지 전자 서명으로 투명하게 관리. ASMS로 접수→완료 전 과정 추적.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">💼</span>
+                <h3 class="digital-title">고객 전용 포털</h3>
+                <p class="digital-desc">장비 현황, 정비 일정, A/S 이력을 직접 확인. 전담 담당자와 함께 디지털로 투명하게 관리합니다.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">🤖</span>
+                <h3 class="digital-title">AI 기반 설비 진단</h3>
+                <p class="digital-desc">고장 원인 사전 분석, 최적 장비 추천. 25년 현장 데이터를 학습한 AI가 더 빠른 해결을 돕습니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- References Section -->
+<section id="references">
+    <div class="container">
+        <h2 class="section-title">신뢰의 증거</h2>
+        <p class="section-subtitle">25년+ 1,000+ 고객이 선택한 이유</p>
+
+        <div class="clients">
+            <div class="clients-list">
+                <span class="client-name">삼성전자</span>
+                <span class="client-name">삼성전기</span>
+                <span class="client-name">에버랜드</span>
+                <span class="client-name">Welstory</span>
+                <span class="client-name">던킨도너츠</span>
+                <span class="client-name">CJ프레시웨이</span>
+                <span class="client-name">신세계푸드</span>
+                <span class="client-name">풀무원</span>
+                <span class="client-name">교촌치킨</span>
+                <span class="client-name">오설록</span>
+                <span class="client-name">메가마트</span>
+                <span class="client-name">한솥</span>
+                <span class="client-name">NHN</span>
+                <span class="client-name">경기대학교</span>
+                <span class="client-name">군인공제회</span>
+                <span class="client-name">삼성서울병원</span>
+                <span class="client-name">Lakeside CC</span>
+                <span class="client-name">Autoliv</span>
+            </div>
+
+            <div class="industry-tags">
+                <span class="industry-tag">프랜차이즈</span>
+                <span class="industry-tag">구내식당</span>
+                <span class="industry-tag">호텔·리조트</span>
+                <span class="industry-tag">공공기관</span>
+                <span class="industry-tag">병원</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq">
+    <div class="container">
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <p class="section-subtitle">궁금한 점이 있으신가요?</p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>견적은 무료인가요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        네, 100% 무료입니다. 현장 방문 후 매장 구조와 예산에 맞춘 맞춤 시공안을 제안해드립니다. 상담 후 강요하지 않으니 충분히 검토 후 결정하세요.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>공사 기간은 얼마나 걸리나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        매장 규모와 공사 범위에 따라 다릅니다. 소규모 매장은 1-2주, 대형 프로젝트는 1-2개월 소요됩니다. 현장 확인 후 정확한 일정을 안내해드립니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>숨은 비용이 있나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        절대 없습니다. 사전 견적서에 모든 항목을 명시합니다. 시공 중 불가피한 추가 작업이 발생하면 반드시 사전 협의 후 진행합니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>시공 후 A/S는 어떻게 받나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        전담 담당자가 배정되며, 디지털 포털로 실시간 관리가 가능합니다. A/S 접수부터 완료까지 전 과정을 투명하게 추적할 수 있고, 정비 일정도 자동으로 알림을 받습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section id="final-cta">
+    <div class="container">
+        <div class="final-cta-content">
+            <h2 class="final-cta-title">비교는 끝났습니다.
+이제 선택하세요.</h2>
+
+            <div class="final-cta-buttons">
+                <a href="https://www.busungtk.com" class="final-cta-button primary">무료 견적 요청</a>
+                <a href="https://equipment-manager-brown.vercel.app/portal/login" class="final-cta-button secondary">포털 데모</a>
+            </div>
+
+            <div class="final-cta-footer">
+                <div class="final-cta-logo">BUSUNG TK</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Floating CTA Button -->
+<a href="https://www.busungtk.com" class="floating-cta">무료 견적 상담</a>
+
+<script>
+(function() {
+    const container = document.querySelector('.btk-lp');
+    if (!container) return;
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    container.querySelectorAll('section').forEach(section => {
+        if (section.id === 'hero') {
+            section.classList.add('visible');
+        }
+        observer.observe(section);
+    });
+
+    // Smooth scroll for anchor links
+    container.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = container.querySelector(this.getAttribute('href'));
+            if (target) {
+                const targetPosition = target.offsetTop;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // FAQ accordion functionality
+    container.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const isActive = item.classList.contains('active');
+
+            container.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Animate data bars on scroll
+    const dataObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, { threshold: 0.5 });
+
+    container.querySelectorAll('.data-bar-visual').forEach(bar => {
+        bar.style.opacity = '0';
+        bar.style.transition = 'opacity 0.6s ease';
+        dataObserver.observe(bar);
+    });
+
+    // Hide floating CTA on final CTA section
+    const finalCta = container.querySelector('#final-cta');
+    const floatingCta = container.querySelector('.floating-cta');
+    if (finalCta && floatingCta) {
+        const finalCtaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    floatingCta.style.opacity = '0';
+                    floatingCta.style.pointerEvents = 'none';
+                } else {
+                    floatingCta.style.opacity = '1';
+                    floatingCta.style.pointerEvents = 'auto';
+                }
+            });
+        }, { threshold: 0.3 });
+        finalCtaObserver.observe(finalCta);
+    }
+})();
+</script>
+</div>
+</body>
+</html>

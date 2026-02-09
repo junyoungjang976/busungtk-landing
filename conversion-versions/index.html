@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전환 최적화 버전 갤러리 | 부성티케이</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        .back-link:hover {
+            color: #FF6B35;
+            border-color: #FF6B35;
+            transform: translateX(-4px);
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            color: #999;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .subtitle strong {
+            color: #FF6B35;
+            font-weight: 600;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        /* Card */
+        .card {
+            background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35 0%, #FF8C5F 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #FF6B35;
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15),
+                        0 0 0 1px rgba(255, 107, 53, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .version-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: #FF6B35;
+            background: rgba(255, 107, 53, 0.1);
+            padding: 6px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .strategy-tag {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C5F 100%);
+            padding: 5px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .card-description {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            min-height: 80px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #333;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .meta-item svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C5F 100%);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.2);
+        }
+
+        .card-link:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4);
+        }
+
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .card-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FF6B35;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 24px;
+            }
+
+            .back-link {
+                position: static;
+                display: inline-flex;
+                margin-bottom: 32px;
+            }
+
+            .header {
+                margin-bottom: 48px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .strategy-tag {
+                align-self: flex-start;
+            }
+        }
+
+        /* Decorative elements */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, #FF6B35 35px, #FF6B35 36px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, #FF6B35 35px, #FF6B35 36px);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <div class="container">
+        <header class="header">
+            <a href="../versions/index.html" class="back-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                디자인 버전 갤러리로
+            </a>
+
+            <h1>전환 최적화 버전 갤러리</h1>
+            <p class="subtitle">
+                동일한 제품과 서비스를 <strong>10가지 다른 심리학적 전환 전략</strong>으로 재구성한 랜딩페이지입니다.<br>
+                각 버전은 서로 다른 고객 심리와 의사결정 패턴을 타겟팅합니다.
+            </p>
+        </header>
+
+        <div class="grid">
+            <!-- Version 1 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 01</span>
+                    <span class="strategy-tag">PAS</span>
+                </div>
+                <h2 class="card-title">고통→해결 (Pain→Solution)</h2>
+                <p class="card-description">
+                    PAS(Pain-Agitation-Solution) 프레임워크를 활용하여 고객의 고통점을 먼저 부각시킨 후 해결책을 제시합니다. 감정적 공감을 통한 전환 유도.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,560 lines
+                    </div>
+                </div>
+                <a href="cv1-pain-solution.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 2 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 02</span>
+                    <span class="strategy-tag">Social Proof</span>
+                </div>
+                <h2 class="card-title">사회적 증거 (Social Proof)</h2>
+                <p class="card-description">
+                    고객 후기, 숫자, 인증으로 신뢰를 구축합니다. 실제 사례와 데이터 중심의 설득 전략으로 신뢰도를 극대화합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,574 lines
+                    </div>
+                </div>
+                <a href="cv2-social-proof.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 3 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 03</span>
+                    <span class="strategy-tag">Before/After</span>
+                </div>
+                <h2 class="card-title">비포→애프터 (Before/After)</h2>
+                <p class="card-description">
+                    좌우 비교 레이아웃으로 변화를 시각화합니다. 기존 방식 vs 부성TK 방식의 명확한 대비를 통해 개선 효과를 직관적으로 전달합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,817 lines
+                    </div>
+                </div>
+                <a href="cv3-before-after.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 4 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 04</span>
+                    <span class="strategy-tag">Urgency</span>
+                </div>
+                <h2 class="card-title">긴급성 (Urgency)</h2>
+                <p class="card-description">
+                    시간 압박과 빠른 대응을 강조합니다. 즉각 행동을 유도하는 카피와 디자인으로 지금 바로 결정하도록 동기를 부여합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,522 lines
+                    </div>
+                </div>
+                <a href="cv4-urgency.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 5 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 05</span>
+                    <span class="strategy-tag">Premium</span>
+                </div>
+                <h2 class="card-title">프리미엄 (Premium)</h2>
+                <p class="card-description">
+                    고급 포지셔닝과 가치 정당화 전략. 품격 있는 디자인 톤과 프리미엄 메시지로 최고급 제품임을 각인시킵니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,519 lines
+                    </div>
+                </div>
+                <a href="cv5-premium.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 6 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 06</span>
+                    <span class="strategy-tag">Expert</span>
+                </div>
+                <h2 class="card-title">전문가 (Expert)</h2>
+                <p class="card-description">
+                    교육적 콘텐츠와 사고리더십으로 전문성을 강조합니다. 전문 지식 공유를 통해 신뢰를 구축하고 권위를 확립합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,610 lines
+                    </div>
+                </div>
+                <a href="cv6-expert.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 7 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 07</span>
+                    <span class="strategy-tag">Data-Driven</span>
+                </div>
+                <h2 class="card-title">데이터 중심 (Data-Driven)</h2>
+                <p class="card-description">
+                    숫자, 통계, 인포그래픽 중심의 설득 전략. 정량적 증거와 데이터 시각화로 논리적 확신을 제공합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,728 lines
+                    </div>
+                </div>
+                <a href="cv7-data-driven.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 8 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 08</span>
+                    <span class="strategy-tag">One-Stop</span>
+                </div>
+                <h2 class="card-title">원스톱 (One-Stop)</h2>
+                <p class="card-description">
+                    설계→납품→시공 통합 솔루션을 강조합니다. 편의성과 효율성을 내세워 복잡함을 제거한 올인원 서비스를 제안합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,532 lines
+                    </div>
+                </div>
+                <a href="cv8-one-stop.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 9 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 09</span>
+                    <span class="strategy-tag">Relationship</span>
+                </div>
+                <h2 class="card-title">관계 중심 (Relationship)</h2>
+                <p class="card-description">
+                    감성적 연결과 파트너십을 강조합니다. 단순 거래가 아닌 장기적 동반 관계를 제안하여 신뢰 기반 관계를 형성합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,489 lines
+                    </div>
+                </div>
+                <a href="cv9-relationship.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Version 10 -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="version-number">VERSION 10</span>
+                    <span class="strategy-tag">Multi-CTA</span>
+                </div>
+                <h2 class="card-title">다중 전환경로 (Multi-CTA)</h2>
+                <p class="card-description">
+                    여러 전환 포인트를 전략적으로 배치합니다. 다양한 고객 여정과 진입 경로를 제공하여 전환 기회를 극대화합니다.
+                </p>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        1,654 lines
+                    </div>
+                </div>
+                <a href="cv10-multi-cta.html" class="card-link">
+                    페이지 보기
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </article>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">전환 최적화 실험 프로젝트</p>
+            <p class="footer-brand">부성티케이 BUSUNG TK</p>
+        </footer>
+    </div>
+</body>
+</html>

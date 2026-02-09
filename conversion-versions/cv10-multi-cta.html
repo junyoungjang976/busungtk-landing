@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부성티케이 - 다중 전환경로</title>
+</head>
+<body>
+<div class="btk-lp">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.btk-lp * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btk-lp {
+    --orange: #FF6B35;
+    --orange-dark: #e85a28;
+    --dark-bg: #0A0A0A;
+    --dark-card: #1a1a1a;
+    --dark-lighter: #2a2a2a;
+    --white: #ffffff;
+    --text-gray: #a3a3a3;
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.btk-lp {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--dark-bg);
+    color: var(--white);
+    line-height: 1.7;
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Section Base */
+.btk-lp section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-lp .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btk-lp .section-title {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+
+.btk-lp .section-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* CTA Buttons */
+.btk-lp .cta-btn {
+    display: inline-block;
+    padding: 1.1rem 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btk-lp .cta-btn.primary {
+    background: var(--orange);
+    color: var(--white);
+}
+
+.btk-lp .cta-btn.primary:hover {
+    background: var(--orange-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.4);
+}
+
+.btk-lp .cta-btn.outline {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btk-lp .cta-btn.outline:hover {
+    border-color: var(--orange);
+    background: rgba(255, 107, 53, 0.1);
+    transform: translateY(-3px);
+}
+
+.btk-lp .section-cta {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.btk-lp .section-cta a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .section-cta a:hover {
+    gap: 0.8rem;
+    color: var(--white);
+}
+
+/* Hero Section */
+.btk-lp #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 107, 53, 0.15), transparent),
+        var(--dark-bg);
+    padding-top: 20px;
+}
+
+.btk-lp .hero-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.btk-lp .hero-headline {
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--white) 0%, var(--text-gray) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btk-lp .hero-subheadline {
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    color: var(--orange);
+    margin-bottom: 3.5rem;
+    font-weight: 600;
+}
+
+.btk-lp .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.btk-lp .stat-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.05) 100%);
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .stat-label {
+    font-size: 1rem;
+    color: var(--text-gray);
+    line-height: 1.4;
+}
+
+.btk-lp .hero-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Quick Actions Bar */
+.btk-lp #quick-actions {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.08) 100%);
+    border-top: 1px solid rgba(255, 107, 53, 0.2);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.btk-lp .quick-action-card {
+    background: var(--dark-bg);
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--white);
+    display: block;
+}
+
+.btk-lp .quick-action-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .quick-action-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.btk-lp .quick-action-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--orange);
+}
+
+.btk-lp .quick-action-desc {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* Process Section */
+.btk-lp #process {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .process-timeline {
+    position: relative;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.btk-lp .timeline-line {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--orange) 80%, rgba(255, 107, 53, 0.3) 100%);
+    z-index: 0;
+}
+
+.btk-lp .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-lp .process-step {
+    text-align: center;
+    position: relative;
+}
+
+.btk-lp .step-number-badge {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--white);
+    border: 4px solid var(--dark-bg);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btk-lp .process-step:hover .step-number-badge {
+    transform: scale(1.15);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
+}
+
+.btk-lp .step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+}
+
+.btk-lp .step-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* Differentiators Section */
+.btk-lp #differentiators {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #0f0f0f 100%);
+}
+
+.btk-lp .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .diff-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-lp .diff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--orange-dark) 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.btk-lp .diff-card:hover::before {
+    transform: scaleX(1);
+}
+
+.btk-lp .diff-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--orange);
+    box-shadow: 0 25px 70px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .diff-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.btk-lp .diff-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: var(--white);
+}
+
+.btk-lp .diff-desc {
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* Data Proof Section */
+.btk-lp #data-proof {
+    padding: 6rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .proof-card {
+    background: var(--dark-card);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    transition: all 0.4s ease;
+}
+
+.btk-lp .proof-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-5px);
+}
+
+.btk-lp .proof-multiplier {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.btk-lp .proof-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.btk-lp .proof-comparison {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.btk-lp .proof-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btk-lp .proof-bar-fill {
+    width: 40px;
+    border-radius: 4px;
+    transition: height 0.6s ease;
+}
+
+.btk-lp .proof-bar-fill.low {
+    background: var(--text-gray);
+}
+
+.btk-lp .proof-bar-fill.high {
+    background: var(--orange);
+}
+
+.btk-lp .proof-bar-label {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+.btk-lp .proof-desc {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* Scenarios Section */
+.btk-lp #scenarios {
+    padding: 8rem 0;
+    background: #0f0f0f;
+}
+
+.btk-lp .scenario-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .scenario-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    transition: all 0.4s ease;
+}
+
+.btk-lp .scenario-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--orange);
+    box-shadow: 0 25px 70px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .scenario-icon {
+    font-size: 2.5rem;
+}
+
+.btk-lp .scenario-type {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+.btk-lp .scenario-title {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-top: 0.5rem;
+}
+
+.btk-lp .scenario-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btk-lp .scenario-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.btk-lp .scenario-arrow {
+    flex-shrink: 0;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.btk-lp .step-text {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+.btk-lp .scenario-cta {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+/* Digital Section */
+.btk-lp #digital {
+    padding: 8rem 0;
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 50%, rgba(255, 107, 53, 0.1), transparent),
+        var(--dark-bg);
+}
+
+.btk-lp .digital-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .digital-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.08) 100%);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .digital-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+}
+
+.btk-lp .digital-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.btk-lp .digital-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.btk-lp .digital-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* References Section */
+.btk-lp #references {
+    padding: 8rem 0;
+    background: #0f0f0f;
+}
+
+.btk-lp .clients {
+    margin-top: 3rem;
+    padding: 3rem;
+    background: var(--dark-card);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.btk-lp .clients-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.btk-lp .client-name {
+    padding: 0.7rem 1.5rem;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btk-lp .client-name:hover {
+    background: rgba(255, 107, 53, 0.2);
+    border-color: var(--orange);
+}
+
+.btk-lp .industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .industry-tag {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--text-gray);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+/* Values Section */
+.btk-lp #values {
+    padding: 6rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .value-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--dark-card);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btk-lp .value-item:hover {
+    border-color: var(--orange);
+}
+
+.btk-lp .value-keyword {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .value-eng {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.btk-lp .value-desc {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+/* FAQ Section */
+.btk-lp #faq {
+    padding: 8rem 0;
+    background: #0f0f0f;
+}
+
+.btk-lp .faq-list {
+    max-width: 900px;
+    margin: 3rem auto 0;
+}
+
+.btk-lp .faq-item {
+    background: var(--dark-card);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .faq-item:hover {
+    border-color: var(--orange);
+}
+
+.btk-lp .faq-question {
+    padding: 1.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .faq-question:hover {
+    color: var(--orange);
+}
+
+.btk-lp .faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--orange);
+}
+
+.btk-lp .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.btk-lp .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.btk-lp .faq-answer-content {
+    padding: 0 2rem 1.8rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+}
+
+.btk-lp .faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+/* Final CTA Section */
+.btk-lp #final-cta {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .final-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .final-cta-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.08) 100%);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    text-align: center;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    color: var(--white);
+    display: block;
+}
+
+.btk-lp .final-cta-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--orange);
+    box-shadow: 0 30px 80px rgba(255, 107, 53, 0.3);
+}
+
+.btk-lp .final-cta-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.btk-lp .final-cta-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--orange);
+    margin-bottom: 1rem;
+}
+
+.btk-lp .final-cta-desc {
+    font-size: 1rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.btk-lp .final-footer {
+    margin-top: 5rem;
+    text-align: center;
+    padding-top: 3rem;
+    border-top: 2px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .footer-logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .footer-tagline {
+    font-size: 1rem;
+    color: var(--text-gray);
+}
+
+/* Floating Multi-CTA Panel */
+.btk-lp .floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .floating-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-lp .floating-cta-toggle {
+    width: 70px;
+    height: 70px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btk-lp .floating-cta-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6);
+}
+
+.btk-lp .floating-cta-menu {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    background: var(--dark-card);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 250px;
+}
+
+.btk-lp .floating-cta-menu.open {
+    display: flex;
+}
+
+.btk-lp .floating-cta-item {
+    padding: 1rem 1.5rem;
+    background: var(--dark-bg);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+.btk-lp .floating-cta-item:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    transform: translateX(-5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btk-lp {
+        font-size: 17px !important;
+    }
+
+    .btk-lp .container {
+        padding: 0 1rem;
+    }
+
+    .btk-lp #hero {
+        min-height: 85vh;
+        padding-top: 2rem;
+    }
+
+    .btk-lp .hero-headline {
+        font-size: 2.2rem;
+    }
+
+    .btk-lp .hero-subheadline {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .btk-lp .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .btk-lp .stat-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .btk-lp .hero-cta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .process-steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .btk-lp .timeline-line {
+        display: none;
+    }
+
+    .btk-lp .step-number-badge {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+    }
+
+    .btk-lp .diff-grid,
+    .btk-lp .digital-grid,
+    .btk-lp .scenario-cards,
+    .btk-lp .final-cta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .diff-card,
+    .btk-lp .scenario-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .btk-lp section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .btk-lp #process,
+    .btk-lp #differentiators,
+    .btk-lp #scenarios,
+    .btk-lp #digital,
+    .btk-lp #references,
+    .btk-lp #faq,
+    .btk-lp #final-cta {
+        padding: 5rem 0;
+    }
+
+    .btk-lp #data-proof,
+    .btk-lp #values,
+    .btk-lp #quick-actions {
+        padding: 4rem 0;
+    }
+
+    .btk-lp .floating-cta {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+    }
+
+    .btk-lp .floating-cta-toggle {
+        width: 100%;
+        border-radius: 12px;
+        height: 60px;
+    }
+
+    .btk-lp .floating-cta-menu {
+        bottom: 80px;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .btk-lp .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .btk-lp .timeline-line {
+        display: none;
+    }
+
+    .btk-lp .diff-grid,
+    .btk-lp .digital-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btk-lp .scenario-cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<!-- Hero Section -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-headline">주방 설비의 모든 것,<br>부성티케이 ONE-CARE</h1>
+            <p class="hero-subheadline">설계부터 A/S까지. 25년 전문 경력의 원스톱 서비스</p>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">25년+</div>
+                    <div class="stat-label">업소용 주방설비 전문 경력</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,000+</div>
+                    <div class="stat-label">신뢰하는 고객사</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">ONE-CARE</div>
+                    <div class="stat-label">전 단계 통합 서비스</div>
+                </div>
+            </div>
+
+            <div class="hero-cta-grid">
+                <a href="https://www.busungtk.com" class="cta-btn primary">무료 견적 요청</a>
+                <a href="#references" class="cta-btn outline">포트폴리오 보기</a>
+                <a href="https://equipment-manager-brown.vercel.app/portal/login" class="cta-btn outline">포털 데모 체험</a>
+                <a href="#process" class="cta-btn outline">프로세스 확인</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Actions Bar -->
+<section id="quick-actions">
+    <div class="container">
+        <div class="quick-actions-grid">
+            <a href="tel:+821012345678" class="quick-action-card">
+                <span class="quick-action-icon">📞</span>
+                <div class="quick-action-title">전화 상담</div>
+                <div class="quick-action-desc">지금 바로 전문가와 통화</div>
+            </a>
+            <a href="https://www.busungtk.com" class="quick-action-card">
+                <span class="quick-action-icon">📋</span>
+                <div class="quick-action-title">견적 요청</div>
+                <div class="quick-action-desc">무료 맞춤 견적</div>
+            </a>
+            <a href="https://equipment-manager-brown.vercel.app/portal/login" class="quick-action-card">
+                <span class="quick-action-icon">💼</span>
+                <div class="quick-action-title">포털 체험</div>
+                <div class="quick-action-desc">고객 관리 시스템 데모</div>
+            </a>
+            <a href="https://www.busungtk.com" class="quick-action-card">
+                <span class="quick-action-icon">📍</span>
+                <div class="quick-action-title">현장 방문 신청</div>
+                <div class="quick-action-desc">전문가 방문 진단</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section id="process">
+    <div class="container">
+        <h2 class="section-title">ONE-CARE 프로세스</h2>
+        <p class="section-subtitle">한 팀이, 처음부터 끝까지</p>
+
+        <div class="process-timeline">
+            <div class="timeline-line"></div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number-badge">1</div>
+                    <h3 class="step-title">현장 방문 & 예산 기획</h3>
+                    <p class="step-desc">매장 구조와 예산에 맞춘 최적안 제안</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">2</div>
+                    <h3 class="step-title">주방 설계</h3>
+                    <p class="step-desc">동선, 부하, 배기까지 고려한 정확한 설계</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">3</div>
+                    <h3 class="step-title">설비 납품</h3>
+                    <p class="step-desc">브랜드 비교, OEM/ODM, 맞춤 장비 소싱</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">4</div>
+                    <h3 class="step-title">설치/시공</h3>
+                    <p class="step-desc">내부 매뉴얼 기반 표준 시공, 품질 일관성</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">5</div>
+                    <h3 class="step-title">사후 관리</h3>
+                    <p class="step-desc">전담 담당자 + 디지털 관리 시스템</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="https://www.busungtk.com">프로세스 상담받기 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Differentiators Section -->
+<section id="differentiators">
+    <div class="container">
+        <h2 class="section-title">차별화 포인트</h2>
+        <p class="section-subtitle">같은 주방, 다른 결과</p>
+
+        <div class="diff-grid">
+            <div class="diff-card">
+                <span class="diff-icon">📐</span>
+                <h3 class="diff-title">정확한 설계로 공정의 안정성</h3>
+                <p class="diff-desc">동선, 부하, 배기까지 고려합니다. 복잡한 주방도 처음부터 정확하게 설계하여 시공 중 문제를 최소화합니다. 1cm 차이가 몇 년 뒤 큰 비용 차이를 만듭니다.</p>
+            </div>
+            <div class="diff-card">
+                <span class="diff-icon">🤝</span>
+                <h3 class="diff-title">협력업체가 많아도 흐름이 정리됩니다</h3>
+                <p class="diff-desc">전기, 가스, 배기, 인테리어 등 여러 팀을 실시간 피드백으로 조율합니다. PM 부담을 경감하고, 프로젝트가 원활하게 진행되도록 중간에서 책임집니다.</p>
+            </div>
+            <div class="diff-card">
+                <span class="diff-icon">🔧</span>
+                <h3 class="diff-title">시공 후에도 계속 함께</h3>
+                <p class="diff-desc">A/S, 정비, 운영 지원까지 전담 담당자와 디지털 시스템으로 지속 관리합니다. 장비 설치가 끝이 아닙니다. 오래 안전하게 사용할 수 있도록 함께합니다.</p>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="https://www.busungtk.com">차이를 직접 확인하세요 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Data Proof Section -->
+<section id="data-proof">
+    <div class="container">
+        <h2 class="section-title">데이터로 증명</h2>
+        <p class="section-subtitle">왜 여기 견적이 더 비싸죠? 고객이 가장 자주 묻는 질문입니다.</p>
+
+        <div class="proof-grid">
+            <div class="proof-card">
+                <div class="proof-multiplier">4배</div>
+                <div class="proof-label">설비 고장 발생률 차이</div>
+                <div class="proof-comparison">
+                    <div class="proof-bar">
+                        <div class="proof-bar-fill high" style="height: 100px;"></div>
+                        <span class="proof-bar-label">타사</span>
+                    </div>
+                    <div class="proof-bar">
+                        <div class="proof-bar-fill low" style="height: 25px;"></div>
+                        <span class="proof-bar-label">자사</span>
+                    </div>
+                </div>
+                <p class="proof-desc">저가 설치는 기준 없이 작업하여 편차가 큽니다. 우리는 설계 단계부터 기준을 적용해 고장 발생을 낮춥니다.</p>
+            </div>
+
+            <div class="proof-card">
+                <div class="proof-multiplier">4배</div>
+                <div class="proof-label">온도 편차 발생 차이</div>
+                <div class="proof-comparison">
+                    <div class="proof-bar">
+                        <div class="proof-bar-fill high" style="height: 100px;"></div>
+                        <span class="proof-bar-label">타사</span>
+                    </div>
+                    <div class="proof-bar">
+                        <div class="proof-bar-fill low" style="height: 25px;"></div>
+                        <span class="proof-bar-label">자사</span>
+                    </div>
+                </div>
+                <p class="proof-desc">장비만 설치하는 것과 공간에 맞춘 세부 튜닝까지 하는 것. 온도 흔들림을 최소화합니다.</p>
+            </div>
+
+            <div class="proof-card">
+                <div class="proof-multiplier">7배</div>
+                <div class="proof-label">설치 매뉴얼 적용 차이</div>
+                <div class="proof-comparison">
+                    <div class="proof-bar">
+                        <div class="proof-bar-fill high" style="height: 100px;"></div>
+                        <span class="proof-bar-label">타사</span>
+                    </div>
+                    <div class="proof-bar">
+                        <div class="proof-bar-fill low" style="height: 14px;"></div>
+                        <span class="proof-bar-label">자사</span>
+                    </div>
+                </div>
+                <p class="proof-desc">작업자마다 품질이 다른 것과, 내부 기준 매뉴얼로 A/S 발생을 줄이는 것. 차이는 시간이 증명합니다.</p>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="https://www.busungtk.com">우리 매장도 진단받기 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Scenarios Section -->
+<section id="scenarios">
+    <div class="container">
+        <h2 class="section-title">프로젝트 유형별 솔루션</h2>
+        <p class="section-subtitle">어떤 프로젝트든, 경험이 답합니다</p>
+
+        <div class="scenario-cards">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🏢</span>
+                    <div>
+                        <div class="scenario-type">프랜차이즈 본사</div>
+                        <div class="scenario-title">"전국 50개 매장의 주방을 표준화해야 합니다"</div>
+                    </div>
+                </div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">표준 설계안 제작</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">지점별 맞춤 장비 납품</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">일관된 시공 품질</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">통합 사후 관리</span>
+                    </div>
+                </div>
+                <div class="scenario-cta">
+                    <a href="https://www.busungtk.com" class="cta-btn primary" style="font-size: 0.95rem; padding: 0.9rem 2rem;">이 유형 견적 받기 →</a>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🍽️</span>
+                    <div>
+                        <div class="scenario-type">대형 구내식당</div>
+                        <div class="scenario-title">"삼성전자 구내식당 200석 리모델링"</div>
+                    </div>
+                </div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">현장 진단</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">동선 최적화 설계</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">고효율 설비 제안</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">영업일 최소화 시공</span>
+                    </div>
+                </div>
+                <div class="scenario-cta">
+                    <a href="https://www.busungtk.com" class="cta-btn primary" style="font-size: 0.95rem; padding: 0.9rem 2rem;">이 유형 견적 받기 →</a>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🏨</span>
+                    <div>
+                        <div class="scenario-type">호텔/리조트</div>
+                        <div class="scenario-title">"오픈 D-60, 주방 설비 전체를 맡겨야 합니다"</div>
+                    </div>
+                </div>
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">예산 기획</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">해외 설비 수입/OEM</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">정밀 시공</span>
+                    </div>
+                    <div class="scenario-step">
+                        <span class="scenario-arrow">→</span>
+                        <span class="step-text">HACCP 대비까지</span>
+                    </div>
+                </div>
+                <div class="scenario-cta">
+                    <a href="https://www.busungtk.com" class="cta-btn primary" style="font-size: 0.95rem; padding: 0.9rem 2rem;">이 유형 견적 받기 →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Digital Section -->
+<section id="digital">
+    <div class="container">
+        <h2 class="section-title">디지털 관리 시스템</h2>
+        <p class="section-subtitle">경험에 시스템을 더했습니다</p>
+
+        <div class="digital-grid">
+            <div class="digital-card">
+                <span class="digital-icon">📋</span>
+                <h3 class="digital-title">Notion 기반 실시간 협업</h3>
+                <p class="digital-desc">정보가 사람에게 묶여 있으면 안 됩니다. 모든 프로젝트, 이력, 팀이 같은 화면에서 공유됩니다. 어디서든 동일하게 열려 있어야 한다는 원칙입니다.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">✍️</span>
+                <h3 class="digital-title">전자 서명 & A/S 관리 시스템</h3>
+                <p class="digital-desc">견적서부터 작업완료까지 전자 서명으로 투명하게 관리합니다. 자체 개발한 ASMS로 접수→견적→작업→완료→입금까지 전 과정을 추적합니다.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">💼</span>
+                <h3 class="digital-title">고객 전용 포털</h3>
+                <p class="digital-desc">장비 현황, 정비 일정, A/S 이력을 직접 확인할 수 있습니다. 전담 담당자와 함께 디지털로 투명하게 관리합니다.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">🤖</span>
+                <h3 class="digital-title">AI 기반 설비 진단</h3>
+                <p class="digital-desc">고장 원인을 사전 분석하고 최적 장비를 추천합니다. 25년 현장 데이터를 학습한 AI가 더 빠른 해결을 돕습니다.</p>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="https://equipment-manager-brown.vercel.app/portal/login">포털 데모 바로 체험 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- References Section -->
+<section id="references">
+    <div class="container">
+        <h2 class="section-title">신뢰하는 파트너</h2>
+        <p class="section-subtitle">25년+ 1,000+ 고객이 선택한 이유</p>
+
+        <div class="clients">
+            <div class="clients-list">
+                <span class="client-name">삼성전자</span>
+                <span class="client-name">삼성전기</span>
+                <span class="client-name">에버랜드</span>
+                <span class="client-name">Welstory</span>
+                <span class="client-name">던킨도너츠</span>
+                <span class="client-name">CJ프레시웨이</span>
+                <span class="client-name">신세계푸드</span>
+                <span class="client-name">풀무원</span>
+                <span class="client-name">교촌치킨</span>
+                <span class="client-name">오설록</span>
+                <span class="client-name">메가마트</span>
+                <span class="client-name">한솥</span>
+                <span class="client-name">NHN</span>
+                <span class="client-name">경기대학교</span>
+                <span class="client-name">군인공제회</span>
+                <span class="client-name">삼성서울병원</span>
+                <span class="client-name">Lakeside CC</span>
+                <span class="client-name">Autoliv</span>
+            </div>
+
+            <div class="industry-tags">
+                <span class="industry-tag">프랜차이즈</span>
+                <span class="industry-tag">구내식당</span>
+                <span class="industry-tag">호텔·리조트</span>
+                <span class="industry-tag">공공기관</span>
+                <span class="industry-tag">병원</span>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="https://www.busungtk.com">포트폴리오 전체 보기 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section id="values">
+    <div class="container">
+        <h2 class="section-title">우리의 약속</h2>
+        <p class="section-subtitle">부성티케이 25년, 우리가 지키는 것들</p>
+
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-keyword">완결</div>
+                <div class="value-eng">Completion</div>
+                <div class="value-desc">시작한 일은 반드시 마무리합니다. 데드라인 안에 모든 것을 완성하는 것이 원칙입니다.</div>
+            </div>
+            <div class="value-item">
+                <div class="value-keyword">원팀</div>
+                <div class="value-eng">One-Team</div>
+                <div class="value-desc">각자의 역할에 최선을 다합니다. 모두가 자신의 위치에서 최선을 다할 때, 팀은 더욱 강해집니다.</div>
+            </div>
+            <div class="value-item">
+                <div class="value-keyword">성과</div>
+                <div class="value-eng">Outcome</div>
+                <div class="value-desc">노력의 결과를 명확하게 측정합니다. 작은 실행 하나도 결과로 이어지며, 고객에게 실질적인 가치를 제공합니다.</div>
+            </div>
+            <div class="value-item">
+                <div class="value-keyword">완료주의</div>
+                <div class="value-eng">Done over Perfect</div>
+                <div class="value-desc">완벽을 기다리지 않습니다. 중요한 것은 끝까지 해내고, 결과를 만들어 내는 것입니다.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq">
+    <div class="container">
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <p class="section-subtitle">궁금한 점이 있으신가요?</p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>견적은 무료인가요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        네, 100% 무료입니다. 현장 방문 후 매장 구조와 예산에 맞춘 맞춤 시공안을 제안해드립니다. 상담 후 강요하지 않으니 충분히 검토 후 결정하세요.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>공사 기간은 얼마나 걸리나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        매장 규모와 공사 범위에 따라 다릅니다. 소규모 매장은 1-2주, 대형 프로젝트는 1-2개월 소요됩니다. 현장 확인 후 정확한 일정을 안내해드립니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>숨은 비용이 있나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        절대 없습니다. 사전 견적서에 모든 항목을 명시합니다. 시공 중 불가피한 추가 작업이 발생하면 반드시 사전 협의 후 진행합니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>시공 후 A/S는 어떻게 받나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        전담 담당자가 배정되며, 디지털 포털로 실시간 관리가 가능합니다. A/S 접수부터 완료까지 전 과정을 투명하게 추적할 수 있고, 정비 일정도 자동으로 알림을 받습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="https://www.busungtk.com">더 궁금한 점이 있으신가요? →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section id="final-cta">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">어떤 방법이든,<br>지금 시작하세요</h2>
+        <p class="section-subtitle" style="text-align: center;">부성티케이가 함께합니다</p>
+
+        <div class="final-cta-grid">
+            <a href="https://www.busungtk.com" class="final-cta-card">
+                <span class="final-cta-icon">📋</span>
+                <div class="final-cta-title">무료 견적 요청</div>
+                <div class="final-cta-desc">현장 방문 후 맞춤 견적 제안</div>
+            </a>
+
+            <a href="https://equipment-manager-brown.vercel.app/portal/login" class="final-cta-card">
+                <span class="final-cta-icon">💼</span>
+                <div class="final-cta-title">포털 데모 체험</div>
+                <div class="final-cta-desc">고객 관리 시스템 직접 체험</div>
+            </a>
+
+            <a href="tel:+821012345678" class="final-cta-card">
+                <span class="final-cta-icon">📞</span>
+                <div class="final-cta-title">전화 상담</div>
+                <div class="final-cta-desc">전문가와 바로 통화</div>
+            </a>
+
+            <a href="https://www.busungtk.com" class="final-cta-card">
+                <span class="final-cta-icon">📍</span>
+                <div class="final-cta-title">현장 방문 신청</div>
+                <div class="final-cta-desc">전문가가 직접 방문 진단</div>
+            </a>
+        </div>
+
+        <div class="final-footer">
+            <div class="footer-logo">BUSUNG TK</div>
+            <div class="footer-tagline">업소용 주방설비 전문 기업</div>
+        </div>
+    </div>
+</section>
+
+<!-- Floating Multi-CTA Panel -->
+<div class="floating-cta">
+    <button class="floating-cta-toggle" onclick="toggleFloatingCTA()">문의</button>
+    <div class="floating-cta-menu">
+        <a href="https://www.busungtk.com" class="floating-cta-item">견적 요청</a>
+        <a href="tel:+821012345678" class="floating-cta-item">전화 상담</a>
+        <a href="https://equipment-manager-brown.vercel.app/portal/login" class="floating-cta-item">포털 체험</a>
+        <a href="https://www.busungtk.com" class="floating-cta-item">현장 방문</a>
+    </div>
+</div>
+
+<script>
+(function() {
+    const container = document.querySelector('.btk-lp');
+    if (!container) return;
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    container.querySelectorAll('section').forEach(section => {
+        if (section.id === 'hero') {
+            section.classList.add('visible');
+        }
+        observer.observe(section);
+    });
+
+    // Smooth scroll for anchor links
+    container.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = container.querySelector(this.getAttribute('href'));
+            if (target) {
+                const targetPosition = target.offsetTop;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // FAQ accordion functionality
+    container.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const isActive = item.classList.contains('active');
+
+            container.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Floating CTA visibility on scroll
+    const floatingCTA = container.querySelector('.floating-cta');
+    const heroSection = container.querySelector('#hero');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > heroSection.offsetHeight * 0.8) {
+            floatingCTA.classList.add('visible');
+        } else {
+            floatingCTA.classList.remove('visible');
+        }
+    });
+
+    // Floating CTA toggle
+    window.toggleFloatingCTA = function() {
+        const menu = container.querySelector('.floating-cta-menu');
+        menu.classList.toggle('open');
+    };
+
+    // Close floating menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const floatingCTA = container.querySelector('.floating-cta');
+        if (!floatingCTA.contains(e.target)) {
+            const menu = container.querySelector('.floating-cta-menu');
+            menu.classList.remove('open');
+        }
+    });
+})();
+</script>
+</div>
+</body>
+</html>

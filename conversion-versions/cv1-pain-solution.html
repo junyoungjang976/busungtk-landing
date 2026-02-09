@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부성티케이 - 고통→해결 (PAS)</title>
+</head>
+<body>
+<div class="btk-lp">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.btk-lp * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btk-lp {
+    --orange: #FF6B35;
+    --orange-dark: #e55a28;
+    --dark-bg: #0A0A0A;
+    --dark-card: #1a1a1a;
+    --dark-lighter: #2a2a2a;
+    --white: #ffffff;
+    --text-gray: #a3a3a3;
+    --red: #ef4444;
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.btk-lp {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--dark-bg);
+    color: var(--white);
+    line-height: 1.7;
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Section Base */
+.btk-lp section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btk-lp .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btk-lp .section-title {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+
+.btk-lp .section-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* Hero Section - Pain Hook */
+.btk-lp #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 107, 53, 0.15), transparent),
+        var(--dark-bg);
+    padding-top: 20px;
+    position: relative;
+}
+
+.btk-lp .hero-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.btk-lp .hero-headline {
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    color: var(--white);
+}
+
+.btk-lp .hero-subheadline {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    color: var(--text-gray);
+    margin-bottom: 4rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.btk-lp .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.btk-lp .stat-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.05) 100%);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .stat-label {
+    font-size: 1rem;
+    color: var(--text-gray);
+    line-height: 1.4;
+}
+
+.btk-lp .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.btk-lp .hero-cta {
+    display: inline-block;
+    padding: 1.3rem 3.5rem;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
+}
+
+.btk-lp .hero-cta:hover {
+    background: var(--orange-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
+}
+
+.btk-lp .hero-secondary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.btk-lp .hero-secondary:hover {
+    border-bottom-color: var(--orange);
+}
+
+/* Pain Section */
+.btk-lp #pain {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .pain-card {
+    background: var(--dark-card);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.btk-lp .pain-card::before {
+    content: '⚠️';
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.btk-lp .pain-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--red);
+    box-shadow: 0 20px 60px rgba(239, 68, 68, 0.2);
+}
+
+.btk-lp .pain-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--white);
+}
+
+.btk-lp .pain-bottom {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btk-lp .pain-bottom-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1.6;
+}
+
+/* Agitation Section */
+.btk-lp #agitation {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #0f0f0f 100%);
+}
+
+.btk-lp .comparison-container {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+}
+
+.btk-lp .comparison-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    transition: all 0.4s ease;
+}
+
+.btk-lp .comparison-card.bad {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.btk-lp .comparison-card.good {
+    border-color: rgba(255, 107, 53, 0.3);
+}
+
+.btk-lp .comparison-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 70px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .comparison-label {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .comparison-card.bad .comparison-label {
+    color: var(--red);
+    border-bottom-color: rgba(239, 68, 68, 0.3);
+}
+
+.btk-lp .comparison-card.good .comparison-label {
+    color: var(--orange);
+    border-bottom-color: rgba(255, 107, 53, 0.3);
+}
+
+.btk-lp .comparison-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.btk-lp .comparison-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.btk-lp .comparison-arrow {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.btk-lp .comparison-card.bad .comparison-arrow {
+    color: var(--red);
+}
+
+.btk-lp .comparison-card.good .comparison-arrow {
+    color: var(--orange);
+}
+
+.btk-lp .comparison-step-text {
+    flex: 1;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+.btk-lp .comparison-total {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(255, 107, 53, 0.2);
+    text-align: center;
+}
+
+.btk-lp .comparison-total-label {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .comparison-total-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+.btk-lp .comparison-card.bad .comparison-total-number {
+    color: var(--red);
+}
+
+.btk-lp .comparison-card.good .comparison-total-number {
+    color: var(--orange);
+}
+
+.btk-lp .agitation-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .agitation-stat {
+    text-align: center;
+    padding: 2rem;
+    background: var(--dark-card);
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btk-lp .agitation-stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .agitation-stat-label {
+    font-size: 1rem;
+    color: var(--text-gray);
+}
+
+.btk-lp .mid-cta {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 100%);
+    border-radius: 16px;
+}
+
+.btk-lp .mid-cta-text {
+    font-size: 1.3rem;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.btk-lp .mid-cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .mid-cta-button:hover {
+    background: var(--orange-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
+}
+
+/* Solution Section */
+.btk-lp #solution {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .process-timeline {
+    position: relative;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.btk-lp .timeline-line {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--orange) 80%, rgba(255, 107, 53, 0.3) 100%);
+    z-index: 0;
+}
+
+.btk-lp .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btk-lp .process-step {
+    text-align: center;
+    position: relative;
+}
+
+.btk-lp .step-number-badge {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--white);
+    border: 4px solid var(--dark-bg);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btk-lp .process-step:hover .step-number-badge {
+    transform: scale(1.15);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
+}
+
+.btk-lp .step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+}
+
+.btk-lp .step-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.btk-lp .solution-message {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 3rem;
+    background: var(--dark-card);
+    border-radius: 16px;
+    border-left: 4px solid var(--orange);
+}
+
+.btk-lp .solution-message-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.6;
+}
+
+/* Proof Section */
+.btk-lp #proof {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #0f0f0f 0%, var(--dark-bg) 100%);
+}
+
+.btk-lp .proof-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .proof-stat-card {
+    background: var(--dark-card);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.btk-lp .proof-stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .proof-stat-number {
+    font-size: clamp(3rem, 6vw, 4rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.btk-lp .proof-stat-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.btk-lp .proof-stat-desc {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+.btk-lp .clients {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--dark-card);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.btk-lp .clients-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.btk-lp .client-name {
+    padding: 0.7rem 1.5rem;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btk-lp .client-name:hover {
+    background: rgba(255, 107, 53, 0.2);
+    border-color: var(--orange);
+}
+
+.btk-lp .industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .industry-tag {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--text-gray);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+/* Differentiator Section */
+.btk-lp #differentiators {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .diff-card {
+    background: var(--dark-card);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btk-lp .diff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--orange-dark) 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.btk-lp .diff-card:hover::before {
+    transform: scaleX(1);
+}
+
+.btk-lp .diff-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--orange);
+    box-shadow: 0 25px 70px rgba(255, 107, 53, 0.2);
+}
+
+.btk-lp .diff-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.btk-lp .diff-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: var(--white);
+}
+
+.btk-lp .diff-desc {
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+.btk-lp .brand-quote {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--dark-card);
+    border-radius: 16px;
+    border-left: 4px solid var(--orange);
+    position: relative;
+}
+
+.btk-lp .brand-quote::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 4rem;
+    color: var(--orange);
+    opacity: 0.3;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.btk-lp .brand-quote-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.6;
+    padding-left: 2rem;
+}
+
+/* Digital Section */
+.btk-lp #digital {
+    padding: 8rem 0;
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 50%, rgba(255, 107, 53, 0.1), transparent),
+        #0f0f0f;
+}
+
+.btk-lp .digital-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.btk-lp .digital-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(255, 107, 53, 0.08) 100%);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btk-lp .digital-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+}
+
+.btk-lp .digital-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.btk-lp .digital-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.btk-lp .digital-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.btk-lp .portal-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--orange);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .portal-link:hover {
+    background: rgba(255, 107, 53, 0.2);
+}
+
+/* FAQ Section */
+.btk-lp #faq {
+    padding: 8rem 0;
+    background: var(--dark-bg);
+}
+
+.btk-lp .faq-list {
+    max-width: 900px;
+    margin: 3rem auto 0;
+}
+
+.btk-lp .faq-item {
+    background: var(--dark-card);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .faq-item:hover {
+    border-color: var(--orange);
+}
+
+.btk-lp .faq-question {
+    padding: 1.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .faq-question:hover {
+    color: var(--orange);
+}
+
+.btk-lp .faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--orange);
+}
+
+.btk-lp .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.btk-lp .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.btk-lp .faq-answer-content {
+    padding: 0 2rem 1.8rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+}
+
+.btk-lp .faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+/* Final CTA Section */
+.btk-lp #final-cta {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, var(--orange-dark) 0%, var(--orange) 100%);
+}
+
+.btk-lp .final-cta-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.btk-lp .final-cta-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 3rem;
+    color: var(--white);
+    line-height: 1.3;
+}
+
+.btk-lp .final-cta-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.btk-lp .final-cta-button {
+    padding: 1.3rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.btk-lp .final-cta-button.primary {
+    background: var(--white);
+    color: var(--orange);
+}
+
+.btk-lp .final-cta-button.primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
+}
+
+.btk-lp .final-cta-button.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btk-lp .final-cta-button.secondary:hover {
+    background: var(--white);
+    color: var(--orange);
+    transform: translateY(-4px);
+}
+
+.btk-lp .final-cta-footer {
+    padding-top: 3rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btk-lp .final-cta-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--white);
+}
+
+.btk-lp .final-cta-tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Floating CTA */
+.btk-lp .floating-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--orange);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.btk-lp .floating-cta.visible {
+    transform: translateY(0);
+}
+
+.btk-lp .floating-cta-button {
+    padding: 1rem 2.5rem;
+    background: var(--white);
+    color: var(--orange);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btk-lp .floating-cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btk-lp {
+        font-size: 17px !important;
+    }
+
+    .btk-lp .section-title {
+        font-size: 2rem;
+    }
+
+    .btk-lp .section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btk-lp #hero {
+        min-height: 80vh;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    .btk-lp .hero-headline {
+        font-size: 2.2rem;
+    }
+
+    .btk-lp .hero-subheadline {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .btk-lp .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .btk-lp .stat-card {
+        padding: 1.8rem 1.5rem;
+    }
+
+    .btk-lp .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .btk-lp .pain-grid,
+    .btk-lp .diff-grid,
+    .btk-lp .digital-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .comparison-container {
+        grid-template-columns: 1fr;
+    }
+
+    .btk-lp .process-steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .btk-lp .timeline-line {
+        display: none;
+    }
+
+    .btk-lp .step-number-badge {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+    }
+
+    .btk-lp .faq-question {
+        font-size: 1.1rem;
+        padding: 1.5rem;
+    }
+
+    .btk-lp .faq-answer-content {
+        padding: 0 1.5rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .btk-lp .final-cta-title {
+        font-size: 1.8rem;
+    }
+
+    .btk-lp .final-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btk-lp .final-cta-button {
+        width: 100%;
+        max-width: 300px;
+        padding: 1.1rem 2rem;
+    }
+
+    .btk-lp .floating-cta {
+        padding: 0.8rem 1rem;
+    }
+
+    .btk-lp .floating-cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .btk-lp section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .btk-lp .container {
+        padding: 0 1rem;
+    }
+
+    .btk-lp #pain,
+    .btk-lp #agitation,
+    .btk-lp #solution,
+    .btk-lp #proof,
+    .btk-lp #differentiators,
+    .btk-lp #digital,
+    .btk-lp #faq,
+    .btk-lp #final-cta {
+        padding: 5rem 0;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .btk-lp .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .btk-lp .timeline-line {
+        display: none;
+    }
+
+    .btk-lp .diff-grid,
+    .btk-lp .digital-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 769px) {
+    .btk-lp .floating-cta {
+        left: auto;
+        right: 2rem;
+        bottom: 2rem;
+        border-radius: 50px;
+        padding: 1rem 2rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+}
+</style>
+
+<!-- Hero Section -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-headline">주방 설비 하나가 멈추면,<br>매장 전체가 멈춥니다</h1>
+            <p class="hero-subheadline">설계 오류 → 설비 고장 → 매출 손실. 이 악순환을 끊는 방법이 있습니다.</p>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">연 4.2회</div>
+                    <div class="stat-label">연간 설비 고장 평균</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150만원</div>
+                    <div class="stat-label">고장 1회당 평균 손실</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">75% 감소</div>
+                    <div class="stat-label">부성티케이 고객 고장률</div>
+                </div>
+            </div>
+
+            <div class="hero-cta-group">
+                <a href="https://www.busungtk.com" class="hero-cta">무료 주방 진단 받기</a>
+                <a href="#pain" class="hero-secondary">실제 사례 보기 ↓</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pain Section -->
+<section id="pain">
+    <div class="container">
+        <h2 class="section-title">이런 경험,<br>있으시죠?</h2>
+        <p class="section-subtitle">대부분의 주방 설비 문제는 '분리된 시공'에서 시작됩니다</p>
+
+        <div class="pain-grid">
+            <div class="pain-card">
+                <p class="pain-text">설비 업체 3곳이 서로 책임을 미루는 상황</p>
+            </div>
+            <div class="pain-card">
+                <p class="pain-text">설치 3개월 만에 냉장고 고장, A/S 연락 두절</p>
+            </div>
+            <div class="pain-card">
+                <p class="pain-text">동선을 무시한 설계로 직원들이 매일 불편해하는 주방</p>
+            </div>
+            <div class="pain-card">
+                <p class="pain-text">견적서엔 없던 추가 비용이 시공 중 계속 발생</p>
+            </div>
+        </div>
+
+        <div class="pain-bottom">
+            <p class="pain-bottom-text">이 모든 문제의 공통 원인은 '분리된 시공'입니다.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Agitation Section -->
+<section id="agitation">
+    <div class="container">
+        <h2 class="section-title">방치하면,<br>비용은 눈덩이가 됩니다</h2>
+        <p class="section-subtitle">저가 시공 vs 제대로 된 시공 — 3년 후 총비용 비교</p>
+
+        <div class="comparison-container">
+            <div class="comparison-card bad">
+                <div class="comparison-label">저가 시공</div>
+                <div class="comparison-steps">
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">초기 비용 낮음</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">설계 기준 없음</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">고장 잦음 (연 4.2회)</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">A/S 별도 비용</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">책임 소재 불분명</span>
+                    </div>
+                </div>
+                <div class="comparison-total">
+                    <div class="comparison-total-label">3년 총비용</div>
+                    <div class="comparison-total-number">2배</div>
+                </div>
+            </div>
+
+            <div class="comparison-card good">
+                <div class="comparison-label">부성티케이</div>
+                <div class="comparison-steps">
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">초기 비용 적정</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">정밀 설계 (동선, 부하, 배기)</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">고장 최소 (75% 감소)</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">통합 사후 관리</span>
+                    </div>
+                    <div class="comparison-step">
+                        <span class="comparison-arrow">→</span>
+                        <span class="comparison-step-text">한 팀이 끝까지 책임</span>
+                    </div>
+                </div>
+                <div class="comparison-total">
+                    <div class="comparison-total-label">3년 총비용</div>
+                    <div class="comparison-total-number">절감</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="agitation-data">
+            <div class="agitation-stat">
+                <div class="agitation-stat-number">4배</div>
+                <div class="agitation-stat-label">높은 설비 고장률</div>
+            </div>
+            <div class="agitation-stat">
+                <div class="agitation-stat-number">7배</div>
+                <div class="agitation-stat-label">낮은 매뉴얼 적용률</div>
+            </div>
+        </div>
+
+        <div class="mid-cta">
+            <p class="mid-cta-text">우리 매장도 이런 문제가 있을까요?</p>
+            <a href="https://www.busungtk.com" class="mid-cta-button">무료 진단 신청하기</a>
+        </div>
+    </div>
+</section>
+
+<!-- Solution Section -->
+<section id="solution">
+    <div class="container">
+        <h2 class="section-title">한 팀이 처음부터 끝까지.<br>그것이 답입니다.</h2>
+        <p class="section-subtitle">부성티케이 ONE-CARE 통합 프로세스</p>
+
+        <div class="process-timeline">
+            <div class="timeline-line"></div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number-badge">1</div>
+                    <h3 class="step-title">현장 방문</h3>
+                    <p class="step-desc">매장 구조, 예산, 운영 방식을 정밀 분석하여 문제를 사전에 발견합니다</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">2</div>
+                    <h3 class="step-title">설계</h3>
+                    <p class="step-desc">동선, 부하, 배기까지 고려한 정밀 설계로 시공 중 문제를 최소화합니다</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">3</div>
+                    <h3 class="step-title">납품</h3>
+                    <p class="step-desc">브랜드 비교부터 OEM/ODM까지, 현장에 최적화된 장비를 소싱합니다</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">4</div>
+                    <h3 class="step-title">시공</h3>
+                    <p class="step-desc">내부 매뉴얼 기반 표준 시공으로 일관된 품질을 보장합니다</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number-badge">5</div>
+                    <h3 class="step-title">사후 관리</h3>
+                    <p class="step-desc">전담 담당자 + 디지털 포털로 A/S, 정비까지 지속 관리합니다</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="solution-message">
+            <p class="solution-message-text">설계자 = 시공자 = 관리자. 책임이 분산되지 않습니다.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Proof Section -->
+<section id="proof">
+    <div class="container">
+        <h2 class="section-title">25년,<br>숫자가 증명합니다</h2>
+        <p class="section-subtitle">신뢰할 수 있는 파트너, 부성티케이</p>
+
+        <div class="proof-stats">
+            <div class="proof-stat-card">
+                <div class="proof-stat-number">25년+</div>
+                <div class="proof-stat-label">전문 경력</div>
+                <div class="proof-stat-desc">업소용 주방설비 분야 25년 이상 축적된 노하우</div>
+            </div>
+            <div class="proof-stat-card">
+                <div class="proof-stat-number">1,000+</div>
+                <div class="proof-stat-label">신뢰 고객사</div>
+                <div class="proof-stat-desc">프랜차이즈부터 공공기관까지 폭넓은 신뢰</div>
+            </div>
+            <div class="proof-stat-card">
+                <div class="proof-stat-number">75%</div>
+                <div class="proof-stat-label">고장률 감소</div>
+                <div class="proof-stat-desc">정밀 설계와 표준 시공으로 고장 발생 최소화</div>
+            </div>
+            <div class="proof-stat-card">
+                <div class="proof-stat-number">ONE-CARE</div>
+                <div class="proof-stat-label">통합 서비스</div>
+                <div class="proof-stat-desc">설계부터 사후 관리까지 한 팀이 끝까지 책임</div>
+            </div>
+        </div>
+
+        <div class="clients">
+            <div class="clients-list">
+                <span class="client-name">삼성전자</span>
+                <span class="client-name">삼성전기</span>
+                <span class="client-name">에버랜드</span>
+                <span class="client-name">Welstory</span>
+                <span class="client-name">던킨도너츠</span>
+                <span class="client-name">CJ프레시웨이</span>
+                <span class="client-name">신세계푸드</span>
+                <span class="client-name">풀무원</span>
+                <span class="client-name">교촌치킨</span>
+                <span class="client-name">오설록</span>
+                <span class="client-name">메가마트</span>
+                <span class="client-name">한솥</span>
+                <span class="client-name">NHN</span>
+                <span class="client-name">경기대학교</span>
+                <span class="client-name">군인공제회</span>
+                <span class="client-name">삼성서울병원</span>
+                <span class="client-name">Lakeside CC</span>
+                <span class="client-name">Autoliv</span>
+            </div>
+
+            <div class="industry-tags">
+                <span class="industry-tag">프랜차이즈</span>
+                <span class="industry-tag">구내식당</span>
+                <span class="industry-tag">호텔·리조트</span>
+                <span class="industry-tag">공공기관</span>
+                <span class="industry-tag">병원</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Differentiators Section -->
+<section id="differentiators">
+    <div class="container">
+        <h2 class="section-title">같은 주방,<br>다른 결과</h2>
+        <p class="section-subtitle">부성티케이를 선택하는 세 가지 이유</p>
+
+        <div class="diff-grid">
+            <div class="diff-card">
+                <span class="diff-icon">📐</span>
+                <h3 class="diff-title">1cm의 차이가 수천만원을 만듭니다</h3>
+                <p class="diff-desc">동선, 부하, 배기까지 고려한 정밀 설계. 복잡한 주방도 처음부터 정확하게 설계하여 시공 중 문제를 최소화합니다. 1cm 차이가 몇 년 뒤 큰 비용 차이를 만듭니다.</p>
+            </div>
+            <div class="diff-card">
+                <span class="diff-icon">🤝</span>
+                <h3 class="diff-title">10개 팀이 와도 하나의 흐름</h3>
+                <p class="diff-desc">전기, 가스, 배기, 인테리어 등 여러 협력업체를 실시간으로 조율합니다. PM 부담을 경감하고, 프로젝트가 원활하게 진행되도록 중간에서 책임집니다.</p>
+            </div>
+            <div class="diff-card">
+                <span class="diff-icon">🔧</span>
+                <h3 class="diff-title">설치는 끝이 아니라 시작입니다</h3>
+                <p class="diff-desc">A/S, 정비, 운영 지원까지 전담 담당자와 디지털 시스템으로 지속 관리합니다. 장비 설치가 끝이 아닙니다. 오래 안전하게 사용할 수 있도록 함께합니다.</p>
+            </div>
+        </div>
+
+        <div class="brand-quote">
+            <p class="brand-quote-text">한번 맡은 현장은 처음부터 끝까지 같은 사람이 책임집니다.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Digital Section -->
+<section id="digital">
+    <div class="container">
+        <h2 class="section-title">25년 경험에<br>시스템을 더했습니다</h2>
+        <p class="section-subtitle">현장 노하우를 디지털로 체계화하여 더 빠르고 정확한 서비스를 제공합니다</p>
+
+        <div class="digital-grid">
+            <div class="digital-card">
+                <span class="digital-icon">📋</span>
+                <h3 class="digital-title">Notion 실시간 협업</h3>
+                <p class="digital-desc">모든 프로젝트, 이력, 팀이 같은 화면에서 공유됩니다. 정보가 사람에게 묶여 있지 않습니다.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">✍️</span>
+                <h3 class="digital-title">전자서명 & A/S 관리</h3>
+                <p class="digital-desc">견적서부터 작업완료까지 전자 서명으로 투명하게 관리합니다. 접수부터 완료까지 전 과정 추적 가능.</p>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">💼</span>
+                <h3 class="digital-title">고객 전용 포털</h3>
+                <p class="digital-desc">장비 현황, 정비 일정, A/S 이력을 직접 확인할 수 있습니다. 전담 담당자와 함께 디지털로 투명하게 관리합니다.</p>
+                <a href="https://equipment-manager-brown.vercel.app/portal/login" class="portal-link">포털 데모 체험 →</a>
+            </div>
+            <div class="digital-card">
+                <span class="digital-icon">🤖</span>
+                <h3 class="digital-title">AI 설비 진단</h3>
+                <p class="digital-desc">25년 현장 데이터를 학습한 AI가 고장 원인을 사전 분석하고 최적 장비를 추천합니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq">
+    <div class="container">
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <p class="section-subtitle">궁금한 점이 있으신가요?</p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>견적은 무료인가요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        네, 100% 무료입니다. 현장 방문 후 매장 구조와 예산에 맞춘 맞춤 시공안을 제안해드립니다. 상담 후 강요하지 않으니 충분히 검토 후 결정하세요.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>공사 기간은 얼마나 걸리나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        매장 규모와 공사 범위에 따라 다릅니다. 소규모 매장은 1-2주, 대형 프로젝트는 1-2개월 소요됩니다. 현장 확인 후 정확한 일정을 안내해드립니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>숨은 비용이 있나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        절대 없습니다. 사전 견적서에 모든 항목을 명시합니다. 시공 중 불가피한 추가 작업이 발생하면 반드시 사전 협의 후 진행합니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>A/S는 어떻게 받나요?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        전담 담당자가 배정되며, 디지털 포털로 실시간 관리가 가능합니다. A/S 접수부터 완료까지 전 과정을 투명하게 추적할 수 있고, 정비 일정도 자동으로 알림을 받습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section id="final-cta">
+    <div class="container">
+        <div class="final-cta-content">
+            <h2 class="final-cta-title">지금 시작하지 않으면,<br>다음 고장은 언제일까요?</h2>
+
+            <div class="final-cta-buttons">
+                <a href="https://www.busungtk.com" class="final-cta-button primary">무료 주방 진단 신청</a>
+                <a href="https://equipment-manager-brown.vercel.app/portal/login" class="final-cta-button secondary">포털 데모 체험</a>
+            </div>
+
+            <div class="final-cta-footer">
+                <div class="final-cta-logo">BUSUNG TK</div>
+                <div class="final-cta-tagline">업소용 주방설비 전문 기업</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Floating CTA -->
+<div class="floating-cta">
+    <a href="https://www.busungtk.com" class="floating-cta-button">무료 견적 상담</a>
+</div>
+
+<script>
+(function() {
+    const container = document.querySelector('.btk-lp');
+    if (!container) return;
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections
+    container.querySelectorAll('section').forEach(section => {
+        if (section.id === 'hero') {
+            section.classList.add('visible');
+        }
+        observer.observe(section);
+    });
+
+    // Smooth scroll for anchor links
+    container.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = container.querySelector(this.getAttribute('href'));
+            if (target) {
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Parallax effect on hero
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroContent = container.querySelector('.hero-content');
+        if (heroContent && scrolled < window.innerHeight) {
+            heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+            heroContent.style.opacity = 1 - (scrolled / window.innerHeight);
+        }
+    });
+
+    // FAQ accordion
+    container.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const isActive = item.classList.contains('active');
+
+            container.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Floating CTA visibility
+    const floatingCta = container.querySelector('.floating-cta');
+    window.addEventListener('scroll', () => {
+        const heroHeight = container.querySelector('#hero').offsetHeight;
+        if (window.pageYOffset > heroHeight) {
+            floatingCta.classList.add('visible');
+        } else {
+            floatingCta.classList.remove('visible');
+        }
+    });
+})();
+</script>
+</div>
+</body>
+</html>

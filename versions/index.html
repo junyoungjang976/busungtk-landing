@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부성티케이 랜딩페이지 — 10 Design Versions</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        /* Card */
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-color);
+        }
+
+        /* Accent Strip */
+        .accent-strip {
+            height: 4px;
+            background-color: var(--accent-color);
+            width: 100%;
+        }
+
+        /* Version Badge */
+        .version-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: var(--accent-color);
+            color: #0a0a0a;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 2rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title-korean {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title-english {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin: 1.2rem 0;
+            flex: 1;
+        }
+
+        /* Preview Button */
+        .preview-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #0a0a0a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-top: auto;
+        }
+
+        .preview-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+            border-bottom-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 640px) {
+            header {
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            main {
+                padding: 0 1rem 2rem;
+            }
+
+            .gallery {
+                gap: 1.5rem;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .card-title-korean {
+                font-size: 1.1rem;
+            }
+
+            .card-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation for initial load */
+        .card {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.15s; }
+        .card:nth-child(4) { animation-delay: 0.2s; }
+        .card:nth-child(5) { animation-delay: 0.25s; }
+        .card:nth-child(6) { animation-delay: 0.3s; }
+        .card:nth-child(7) { animation-delay: 0.35s; }
+        .card:nth-child(8) { animation-delay: 0.4s; }
+        .card:nth-child(9) { animation-delay: 0.45s; }
+        .card:nth-child(10) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="logo">BUSUNG TK</h1>
+            <p class="subtitle">랜딩페이지 디자인 버전 비교</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="gallery">
+            <!-- Version 1: Premium Dark Gold -->
+            <div class="card" style="--accent-color: #C9A961;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V1</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">프리미엄 다크 골드</div>
+                        <div class="card-title-english">Premium Dark Gold</div>
+                    </div>
+                    <p class="card-description">고급 다크 테마, 골드 액센트, 럭셔리 쇼룸</p>
+                    <a href="v1-premium-dark.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 2: Clean Corporate -->
+            <div class="card" style="--accent-color: #2563EB;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V2</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">클린 코퍼레이트</div>
+                        <div class="card-title-english">Clean Corporate</div>
+                    </div>
+                    <p class="card-description">화이트 배경, 블루 기업형, 삼성/LG B2B 스타일</p>
+                    <a href="v2-clean-corporate.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 3: Industrial Steel -->
+            <div class="card" style="--accent-color: #FF6B35;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V3</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">인더스트리얼 스틸</div>
+                        <div class="card-title-english">Industrial Steel</div>
+                    </div>
+                    <p class="card-description">메탈릭 스테인리스, 산업용 주방 팩토리</p>
+                    <a href="v3-industrial-steel.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 4: Gradient Aurora -->
+            <div class="card" style="--accent-color: #7C3AED;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V4</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">그라디언트 오로라</div>
+                        <div class="card-title-english">Gradient Aurora</div>
+                    </div>
+                    <p class="card-description">보라-블루-틸 오로라 그라디언트, 모던 테크</p>
+                    <a href="v4-gradient-aurora.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 5: Glassmorphism -->
+            <div class="card" style="--accent-color: #3B82F6;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V5</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">글래스모피즘</div>
+                        <div class="card-title-english">Glassmorphism</div>
+                    </div>
+                    <p class="card-description">프로스트 글래스 효과, 투명 레이어</p>
+                    <a href="v5-glassmorphism.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 6: Warm Earth Tone -->
+            <div class="card" style="--accent-color: #C45D3E;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V6</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">웜 어스톤</div>
+                        <div class="card-title-english">Warm Earth Tone</div>
+                    </div>
+                    <p class="card-description">따뜻한 자연 톤, 테라코타, 유기적</p>
+                    <a href="v6-warm-earth.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 7: Minimalist Mono -->
+            <div class="card" style="--accent-color: #FF3B30;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V7</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">미니멀리스트 모노</div>
+                        <div class="card-title-english">Minimalist Mono</div>
+                    </div>
+                    <p class="card-description">흑백 + 레드 포인트, 스위스 타이포</p>
+                    <a href="v7-minimalist-mono.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 8: Bento Grid -->
+            <div class="card" style="--accent-color: #FF7A00;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V8</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">벤토 그리드</div>
+                        <div class="card-title-english">Bento Grid</div>
+                    </div>
+                    <p class="card-description">벤토 박스 모듈형 레이아웃</p>
+                    <a href="v8-bento-grid.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 9: Bold Typography -->
+            <div class="card" style="--accent-color: #C41E3A;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V9</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">볼드 타이포</div>
+                        <div class="card-title-english">Bold Typography</div>
+                    </div>
+                    <p class="card-description">대담한 에디토리얼 매거진 스타일</p>
+                    <a href="v9-bold-type.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+
+            <!-- Version 10: Neon Tech -->
+            <div class="card" style="--accent-color: #00F0FF;">
+                <div class="accent-strip"></div>
+                <div class="card-content">
+                    <div class="version-badge">V10</div>
+                    <div class="card-title">
+                        <div class="card-title-korean">네온 테크</div>
+                        <div class="card-title-english">Neon Tech</div>
+                    </div>
+                    <p class="card-description">사이버펑크, 네온 글로우, 미래형 주방</p>
+                    <a href="v10-neon-tech.html" class="preview-btn" target="_blank">미리보기</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>원본 파일: <a href="../digital-partnership.html" class="footer-link">digital-partnership.html</a></p>
+        </div>
+    </footer>
+</body>
+</html>
